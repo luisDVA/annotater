@@ -31,11 +31,14 @@ devtools::install_github("luisDVA/annotater")
 
 ## Example
 
-This is a basic example with a character string. Entire .R files can also be parsed and annotated with the \code{annotate_script} function.
+This is a basic example with a simple character string.
 
 ```{r example}
-#library(annotater)
-#test_string <-c("library(boot)\nrequire(Matrix))
-#annotate_pckg_calls(test_string)
+library(annotater)
+test_string <-c("library(boot)\nrequire(Matrix)")
+writeLines(annotate_pckg_calls(test_string))
 ```
 
+ Entire .R files can also be parsed and annotated with the _annotate_script_ function.
+ 
+ 

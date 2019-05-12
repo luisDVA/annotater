@@ -26,11 +26,15 @@ devtools::install_github("luisDVA/annotater")
 
 ## Example
 
-This is a basic example with a character string. Entire .R files can
-also be parsed and annotated with the  function.
+This is a basic example with a simple character string.
 
 ``` r
-#library(annotater)
-#test_string <-c("library(boot)\nrequire(Matrix))
-#annotate_pckg_calls(test_string)
+library(annotater)
+test_string <-c("library(boot)\nrequire(Matrix)")
+writeLines(annotate_pckg_calls(test_string))
+#> library(boot) # Bootstrap Functions (Originally by Angelo Canty for S)
+#> require(Matrix) # Sparse and Dense Matrix Classes and Methods
 ```
+
+Entire .R files can also be parsed and annotated with the
+*annotate\_script* function.
