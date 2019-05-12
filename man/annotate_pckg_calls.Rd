@@ -14,6 +14,7 @@ annotate_pckg_calls(string_og, pckg_field = "Title")
 }
 \value{
 text string with package Title annotations
+#'
 }
 \description{
 Annotate package calls
