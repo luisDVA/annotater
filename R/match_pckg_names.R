@@ -12,7 +12,7 @@
 match_pckg_names <- function(string_og) {
   tb_names <- c("call", "package_name")
   lib_matches <- stringr::str_match_all(string_og, "library\\((.*)\\)")
-  lib_tb <- as_tibble(lib_matches[[1]], .name_repair = ~tb_names)
+  lib_tb <- tibble::as_tibble(lib_matches[[1]], .name_repair = ~tb_names)
   req_matches <- stringr::str_match_all(string_og, "require\\((.*)\\)")
   req_tb <- tibble::as_tibble(req_matches[[1]], .name_repair = ~tb_names)
   dplyr::bind_rows(lib_tb, req_tb)

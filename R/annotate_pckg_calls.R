@@ -9,6 +9,7 @@
 #' @examples
 #' test_string <- c("library(boot)\nrequire(Matrix)")
 #' annotate_pckg_calls(test_string)
+#'
 #' @export
 annotate_pckg_calls <- function(string_og, pckg_field = "Title") {
   out_tb <- match_pckg_names(string_og)
