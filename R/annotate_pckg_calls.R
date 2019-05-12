@@ -14,7 +14,7 @@
 annotate_pckg_calls <- function(string_og, pckg_field = "Title") {
   out_tb <- match_pckg_names(string_og)
   # get pckg titles
-  out_tb$pck_desc <- purrr::map_chr(out_tb$package_name, packageDescription, fields = pckg_field)
+  out_tb$pck_desc <- purrr::map_chr(out_tb$package_name, utils::packageDescription, fields = pckg_field)
   # new title variable
   out_tb$annotated <- paste(out_tb$call, "#", out_tb$pck_desc)
   stringi::stri_replace_all_fixed(
