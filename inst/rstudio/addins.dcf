@@ -1,0 +1,5 @@
+Name: Annotate package calls in active file
+Description: Describes the packages being loaded
+Binding: annotate_active_file
+Interactive: false
+
