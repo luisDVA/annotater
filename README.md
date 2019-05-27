@@ -13,8 +13,6 @@ dependency issues for packages that are not even used in a problematic
 script. Scripts get passed around, code is copied and pasted, and we
 might not know what certain packages are for.
 
-The idea is to eventually turn this into an RStudio addin.
-
 ## Installation
 
 You can install the development version of annotater from GitHub with:
@@ -22,6 +20,13 @@ You can install the development version of annotater from GitHub with:
 ``` r
 # install.packages("devtools")
 devtools::install_github("luisDVA/annotater")
+```
+
+Alternatively:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("luisDVA/annotater")
 ```
 
 ## Example
@@ -38,3 +43,8 @@ writeLines(annotate_pckg_calls(test_string))
 
 Entire .R files can also be parsed and annotated with the
 *annotate\_script* function.
+
+*annotater* now includes an RStudio addin to make annotations on the
+active R file in the source pane.
+
+Try it out\!
