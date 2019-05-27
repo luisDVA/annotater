@@ -17,6 +17,7 @@ Imports:
     tibble,
     dplyr,
     stringi,
-    readr
+    readr,
+    clipr
 URL: https://github.com/luisDVA/annotater
 BugReports: https://github.com/luisDVA/annotater/issues

@@ -2,4 +2,5 @@
 
 export(annotate_pckg_calls)
 export(annotate_script)
+export(eval_clip_annpckgs)
 export(match_pckg_names)
