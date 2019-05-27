@@ -13,7 +13,8 @@ annotate_pckg_calls(string_og, pckg_field = "Title")
 "Title"}
 }
 \value{
-text string with package Title annotations
+text string with package Title annotations. Will make note of
+  packages not currently installed.
 #'
 }
 \description{
