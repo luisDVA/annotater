@@ -1,12 +1,15 @@
 Package: annotater
-Type: Package
 Title: Annotate Package Load Calls
 Version: 0.1.0
-Authors@R: person(given="Luis D.", family="Verde Arregoitia",comment=c(ORCID="0000-0001-9520-6543"))
-Maintainer: Luis D. Verde Arregoitia <luis@liomys.mx>
+Authors@R: 
+    person(given = "Luis D.",
+           family = "Verde Arregoitia",
+           role = c("aut", "cre"),
+           email = "luis@liomys.mx",
+           comment = c(ORCID = "0000-0001-9520-6543"))
 Description: Similar to styler. Provides non-invasive annotation of package load calls 
-    such as \code{library} and \code{require} so that we can have an idea of what 
-    the packages we're loading are meant for.
+such as \code{library} and \code{require} so that we can have an idea of what 
+the packages we're loading are meant for.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,3 +24,4 @@ Imports:
     clipr
 URL: https://github.com/luisDVA/annotater
 BugReports: https://github.com/luisDVA/annotater/issues
+
