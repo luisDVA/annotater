@@ -8,8 +8,8 @@ Authors@R:
            email = "luis@liomys.mx",
            comment = c(ORCID = "0000-0001-9520-6543"))
 Description: Similar to styler. Provides non-invasive annotation of package load calls 
-such as \code{library} and \code{require} so that we can have an idea of what 
-the packages we're loading are meant for.
+    such as \code{library} and \code{require} so that we can have an idea of what 
+    the packages we're loading are meant for.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
