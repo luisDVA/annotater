@@ -1,4 +1,4 @@
-#' Annotate active file
+#' Annotate Active File
 #'
 #' Annotates package load calls in the active .R file
 #'

@@ -1,4 +1,4 @@
-#' Annonate clipboard content
+#' Annonate Clipboard Content
 #'
 #' Evaluates and annotates clipboard content.
 #'

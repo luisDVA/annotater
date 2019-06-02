@@ -1,4 +1,4 @@
-#' Annotate script
+#' Annotate Script
 #'
 #' @param script_file path to an R script
 #' @param pckg_field field from package description to retrieve, defaults to
