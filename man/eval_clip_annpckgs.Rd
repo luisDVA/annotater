@@ -2,7 +2,7 @@
 % Please edit documentation in R/eval_clip_annpckgs.R
 \name{eval_clip_annpckgs}
 \alias{eval_clip_annpckgs}
-\title{Annonate clipboard content}
+\title{Annonate Clipboard Content}
 \usage{
 eval_clip_annpckgs()
 }

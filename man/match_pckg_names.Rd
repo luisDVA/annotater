@@ -2,7 +2,7 @@
 % Please edit documentation in R/match_pckg_names.R
 \name{match_pckg_names}
 \alias{match_pckg_names}
-\title{Match package names}
+\title{Match Package Names}
 \usage{
 match_pckg_names(string_og)
 }
@@ -14,7 +14,7 @@ a tibble with the package load calls and package names
 #'
 }
 \description{
-Match package names
+Match Package Names
 }
 \examples{
 test_string <- c("library(boot)\\nrequire(Matrix)")

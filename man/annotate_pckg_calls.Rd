@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_pckg_calls.R
 \name{annotate_pckg_calls}
 \alias{annotate_pckg_calls}
-\title{Annotate package calls}
+\title{Annotate Package Calls}
 \usage{
 annotate_pckg_calls(string_og, pckg_field = "Title")
 }
@@ -18,7 +18,7 @@ text string with package Title annotations. Will make note of
 #'
 }
 \description{
-Annotate package calls
+Annotate Package Calls
 }
 \examples{
 test_string <- c("library(boot)\\nrequire(Matrix)")

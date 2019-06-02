@@ -18,4 +18,13 @@ Useful links:
 }
 
 }
+\author{
+\strong{Maintainer}: 
+
+Other contributors:
+\itemize{
+  \item Luis D. Verde Arregoitia (0000-0001-9520-6543)
+}
+
+}
 \keyword{internal}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_script.R
 \name{annotate_script}
 \alias{annotate_script}
-\title{Annotate script}
+\title{Annotate Script}
 \usage{
 annotate_script(script_file, pckg_field)
 }
@@ -17,7 +17,7 @@ currently prints the annotated script to the console
 #'
 }
 \description{
-Annotate script
+Annotate Script
 }
 \examples{
 
