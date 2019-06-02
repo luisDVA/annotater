@@ -10,6 +10,7 @@
 #'
 #'@export
 match_pckg_names <- function(string_og) {
+  if (!is.character(string_og)) stop("input must be a character string")
   tb_names <- c("call", "package_name")
   lib_matches <- stringr::str_match_all(string_og, "library\\((.*)\\)")
   lib_tb <- tibble::as_tibble(lib_matches[[1]], .name_repair = ~tb_names)
