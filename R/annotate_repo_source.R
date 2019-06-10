@@ -32,7 +32,7 @@ annotate_repo_source <- function(string_og) {
                                TRUE ~ user_repo
                              )
   )
-  pck_descs$annotated <- paste(pck_descs$call, "#", pck_descs$annotation)
+  pck_descs$annotated <- paste0(pck_descs$call, " # ", "[", pck_descs$annotation,"]",)
   stringi::stri_replace_all_fixed(
     str = string_og, pattern = pck_descs$call,
     replacement = pck_descs$annotated, vectorize_all = FALSE
