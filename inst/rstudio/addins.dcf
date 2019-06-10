@@ -3,3 +3,7 @@ Description: Describes the packages being loaded
 Binding: annotate_active_file
 Interactive: false
 
+Name: Annotate package repository sources in active file
+Description: Annotates the source for nonstandard packages
+Binding: annotate_repos_active_file
+Interactive: false
