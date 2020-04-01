@@ -17,7 +17,6 @@ a tibble with the package load calls and package names
 Match Package Names
 }
 \examples{
-test_string <- c("library(boot)\\nrequire(Matrix)")
+test_string <- c("library(boot)\nrequire(Matrix)")
 match_pckg_names(test_string)
-
 }

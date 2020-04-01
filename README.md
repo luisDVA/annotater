@@ -14,8 +14,9 @@ and R scripts, so we can have an idea of the overall purpose of the
 libraries we’re loading.
 
 The other main feature helps us annotate the package load calls with the
-repository source when a package is not installed from CRAN. Thanks to
-[Jonathan Carroll](https://github.com/jonocarroll) for the suggestion.
+repository source (and version) when a package is not installed from
+CRAN. Thanks to [Jonathan Carroll](https://github.com/jonocarroll) for
+the suggestion.
 
 This project came about after teaching workshops or helping peers and
 realizing that many issues relate to package installation failures and
@@ -26,13 +27,6 @@ might not know what certain packages are for.
 ## Installation
 
 You can install the development version of annotater from GitHub with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("luisDVA/annotater")
-```
-
-Alternatively:
 
 ``` r
 # install.packages("remotes")
@@ -50,11 +44,17 @@ This is a basic example with a simple character string.
 library(annotater)
 test_string <-c("library(boot)\nrequire(Matrix)")
 writeLines(annotate_pckg_calls(test_string))
+#> New names:
+#> * `` -> call
+#> * `` -> package_name
+#> New names:
+#> * `` -> call
+#> * `` -> package_name
 #> library(boot) # Bootstrap Functions (Originally by Angelo Canty for S)
 #> require(Matrix) # Sparse and Dense Matrix Classes and Methods
 ```
 
 Entire .R files can also be parsed and annotated with the
-*annotate\_script* function.
+`annotate_script` function.
 
 Try it out\! Feedback welcome

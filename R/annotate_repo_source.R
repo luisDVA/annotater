@@ -2,8 +2,10 @@
 #'
 #' @param string_og text string (script) with package load calls
 #'
-#' @return text string with package repository source annotations. Will make note of
-#'   packages not currently installed.
+#' @return text string with package repository source annotations. Will make
+#'   note of packages not currently installed. Lines with existing comments or
+#'   annotations are ignored by the regular expression that matches package
+#'   names. Also ignores base packages.
 #'
 #' @examples
 #' #' test_string <- c("library(annotater)\nrequire(Matrix)")
@@ -16,8 +18,9 @@ annotate_repo_source <- function(string_og) {
     fields = c("Repository", "RemoteType", "biocViews")
   )
   pck_descs <- purrr::map(pck_descs, as.list)
-  pck_descs <- tidyr::unnest(tibble::enframe(purrr::map(pck_descs, purrr::flatten_chr), name = "rowid", value = "repo"))
-  pck_descs <- dplyr::left_join(out_tb, pck_descs)
+  pck_descs <- tidyr::unnest(tibble::enframe(purrr::map(pck_descs, purrr::flatten_chr)), cols = c(value))
+  pck_descs <- dplyr::rename(pck_descs, rowid = 1, repo = 2)
+  pck_descs <- dplyr::left_join(out_tb, pck_descs, by = "rowid")
   pck_descs <- dplyr::mutate(pck_descs, repo = ifelse(stringr::str_detect(repo, ","), "Bioconductor", repo))
   pck_descs <- dplyr::add_count(pck_descs, package_name)
   pck_descs <- na.omit(dplyr::mutate(pck_descs, repo = dplyr::if_else(n == 1, "none", repo)))
@@ -30,9 +33,9 @@ annotate_repo_source <- function(string_og) {
   ), annotation = dplyr::case_when(stringr::str_detect(
     user_repo,
     "/"
-  ) ~ paste0(repo, "::", user_repo), TRUE ~ user_repo))
-
-  pck_descs$annotated <- paste0(pck_descs$call, " # ", "[", pck_descs$annotation, "]")
+  ) ~ paste0("[", repo, "::", user_repo, "]"), TRUE ~ user_repo))
+  pck_descs <- dplyr::mutate(pck_descs, version = annotater:::pkg_version(package_name))
+  pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$annotation, " v", pck_descs$version)
   stringi::stri_replace_all_fixed(
     str = string_og, pattern = pck_descs$call,
     replacement = pck_descs$annotated, vectorize_all = FALSE

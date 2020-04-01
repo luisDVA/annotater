@@ -10,13 +10,15 @@ annotate_repo_source(string_og)
 \item{string_og}{text string (script) with package load calls}
 }
 \value{
-text string with package repository source annotations. Will make note of
-  packages not currently installed.
+text string with package repository source annotations. Will make
+  note of packages not currently installed. Lines with existing comments or
+  annotations are ignored by the regular expression that matches package
+  names. Also ignores base packages.
 }
 \description{
 Annotate Repo Source
 }
 \examples{
-#' test_string <- c("library(annotater)\\nrequire(Matrix)")
+#' test_string <- c("library(annotater)\nrequire(Matrix)")
 annotate_repo_source(test_string)
 }

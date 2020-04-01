@@ -1,6 +1,6 @@
 Package: annotater
 Title: Annotate Package Load Calls
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Luis D.",
            family = "Verde Arregoitia",
@@ -13,7 +13,7 @@ Description: Similar to styler. Provides non-invasive annotation of package load
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Imports: 
     stringr,
     purrr,
@@ -24,4 +24,3 @@ Imports:
     clipr
 URL: https://github.com/luisDVA/annotater
 BugReports: https://github.com/luisDVA/annotater/issues
-

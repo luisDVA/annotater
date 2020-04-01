@@ -19,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Luis D. Verde Arregoitia \email{luis@liomys.mx} (0000-0001-9520-6543)
+\strong{Maintainer}: Luis D. Verde Arregoitia \email{luis@liomys.mx} (\href{https://orcid.org/0000-0001-9520-6543}{ORCID})
 
 }
 \keyword{internal}

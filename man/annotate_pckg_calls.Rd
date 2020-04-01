@@ -21,7 +21,7 @@ text string with package Title annotations. Will make note of
 Annotate Package Calls
 }
 \examples{
-test_string <- c("library(boot)\\nrequire(Matrix)")
+test_string <- c("library(boot)\nrequire(Matrix)")
 annotate_pckg_calls(test_string)
 
 }
