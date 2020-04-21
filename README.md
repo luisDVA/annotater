@@ -34,7 +34,10 @@ remotes::install_github("luisDVA/annotater")
 ```
 
 I suggest restarting RStudio after the installation for the addins to
-load properly.
+load
+properly.
+
+### When using the addins, make sure the focus (blinking cursor) is on an open RStudio R file in the ‘source’ pane.
 
 ## Example
 
@@ -44,12 +47,6 @@ This is a basic example with a simple character string.
 library(annotater)
 test_string <-c("library(boot)\nrequire(Matrix)")
 writeLines(annotate_pckg_calls(test_string))
-#> New names:
-#> * `` -> call
-#> * `` -> package_name
-#> New names:
-#> * `` -> call
-#> * `` -> package_name
 #> library(boot) # Bootstrap Functions (Originally by Angelo Canty for S)
 #> require(Matrix) # Sparse and Dense Matrix Classes and Methods
 ```

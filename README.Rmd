@@ -38,6 +38,8 @@ remotes::install_github("luisDVA/annotater")
 ```
 I suggest restarting RStudio after the installation for the addins to load properly.
 
+### When using the addins, make sure the focus (blinking cursor) is on an open RStudio R file in the 'source' pane.
+
 ## Example
 
 This is a basic example with a simple character string.
