@@ -36,8 +36,8 @@ annotate_repo_source <- function(string_og) {
   ) ~ paste0("[", repo, "::", user_repo, "]"), TRUE ~ user_repo))
   pck_descs <- dplyr::mutate(pck_descs, version = annotater:::pkg_version(package_name))
   pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$annotation, " v", pck_descs$version)
-  stringi::stri_replace_all_fixed(
+  align_annotations(stringi::stri_replace_all_fixed(
     str = string_og, pattern = pck_descs$call,
     replacement = pck_descs$annotated, vectorize_all = FALSE
-  )
+  ))
 }
