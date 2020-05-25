@@ -18,13 +18,13 @@ knitr::opts_chunk$set(
 
 ![look!](https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif)
 
-![look!](https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos1.gif)
+![look!](https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif)
 
-The goal of annotater is to annotate package load calls in text strings and R scripts, so we can have an idea of the overall purpose of the libraries we're loading.
+The goal of annotater is to annotate package load calls in text strings and R/Rmd files, so we can have an idea of the overall purpose of the libraries we're loading.
 
-The other main feature helps us annotate the package load calls with the repository source (and version) when a package is not installed from CRAN. Thanks to [Jonathan Carroll](https://github.com/jonocarroll) for the suggestion. 
+The other main feature helps us annotate the package load calls with their respective repositories and versions. Thanks to [Jonathan Carroll](https://github.com/jonocarroll) for the suggestion. 
 
-This project came about after teaching workshops or helping peers and realizing that many issues relate to package installation failures and dependency issues for packages that are not even used in a problematic script. Scripts get passed around, code is copied and pasted, and we might not know what certain packages are for.
+This project came about after teaching workshops or helping peers and realizing that many issues relate to package installation failures and dependency issues for packages that were not even used in a problematic script. Scripts get passed around, code is copied and pasted, and we might not know what certain packages are for.
 
 
 
