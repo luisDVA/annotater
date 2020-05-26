@@ -44,7 +44,7 @@ I suggest restarting RStudio after the installation for the addins to load prope
 
 This is a basic example with a simple character string.
 
-```{r example}
+```r
 library(annotater)
 test_string <-c("library(boot)\nrequire(Matrix)")
 writeLines(annotate_pckg_calls(test_string))

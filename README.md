@@ -46,8 +46,6 @@ This is a basic example with a simple character string.
 library(annotater)
 test_string <-c("library(boot)\nrequire(Matrix)")
 writeLines(annotate_pckg_calls(test_string))
-#> library(boot) # Bootstrap Functions (Originally by Angelo Canty for S)
-#> require(Matrix) # Sparse and Dense Matrix Classes and Methods
 ```
 
 Entire .R files can also be parsed and annotated with the

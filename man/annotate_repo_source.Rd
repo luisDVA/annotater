@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_repo_source.R
 \name{annotate_repo_source}
 \alias{annotate_repo_source}
-\title{Annotate Repo Source}
+\title{Annotate Repository Sources}
 \usage{
 annotate_repo_source(string_og)
 }
@@ -16,9 +16,9 @@ text string with package repository source annotations. Will make
   names. Also ignores base packages.
 }
 \description{
-Annotate Repo Source
+Annotate Repository Sources
 }
 \examples{
-#' test_string <- c("library(annotater)\nrequire(Matrix)")
+test_string <- c("library(boot)\nrequire(lattice)")
 annotate_repo_source(test_string)
 }

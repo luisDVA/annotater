@@ -11,7 +11,6 @@ match_pckg_names(string_og)
 }
 \value{
 a tibble with the package load calls and package names
-#'
 }
 \description{
 Match Package Names

@@ -5,8 +5,6 @@
 #'   "Title"
 #'
 #' @return currently prints the annotated script to the console
-#' #'
-#' @examples
 #'
 #' @export
 annotate_script <- function(script_file, pckg_field) {

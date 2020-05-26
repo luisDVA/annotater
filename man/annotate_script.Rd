@@ -14,11 +14,7 @@ annotate_script(script_file, pckg_field)
 }
 \value{
 currently prints the annotated script to the console
-#'
 }
 \description{
 Annotate Script
-}
-\examples{
-
 }

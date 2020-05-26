@@ -13,6 +13,10 @@ align_annotations(
 }
 \arguments{
 \item{annot_string}{Character vector with annotated package calls.}
+
+\item{regex_ai}{Custom regular expression to match lines with package annotations.}
+
+\item{sep_str}{Whitespace separator.}
 }
 \value{
 A character vector with vertically aligned package calls.

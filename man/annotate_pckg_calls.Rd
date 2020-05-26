@@ -23,5 +23,4 @@ Annotate Package Calls
 \examples{
 test_string <- c("library(boot)\nrequire(Matrix)")
 annotate_pckg_calls(test_string)
-
 }

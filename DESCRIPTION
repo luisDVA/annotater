@@ -21,6 +21,9 @@ Imports:
     dplyr,
     stringi,
     readr,
-    clipr
+    clipr,
+    rstudioapi,
+    tidyr,
+    rlang
 URL: https://github.com/luisDVA/annotater
 BugReports: https://github.com/luisDVA/annotater/issues

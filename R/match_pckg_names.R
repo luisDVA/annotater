@@ -3,7 +3,7 @@
 #' @param string_og text string (script) with package load calls
 #'
 #' @return a tibble with the package load calls and package names
-#' #'
+#'
 #' @examples
 #' test_string <- c("library(boot)\nrequire(Matrix)")
 #' match_pckg_names(test_string)
