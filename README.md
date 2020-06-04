@@ -3,18 +3,21 @@
 
 # annotater
 
-## The main course
+<img src='man/figures/logo.png' align="right" height="138" /> The goal
+of annotater is to annotate package load calls in text strings and R/Rmd
+files, so we can have an idea of the overall purpose of the libraries
+we’re loading.
+
+### What do my loaded packages do?
 
 ![look\!](https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif)
 
+### Where did I get them?
+
 ![look\!](https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif)
 
-The goal of annotater is to annotate package load calls in text strings
-and R/Rmd files, so we can have an idea of the overall purpose of the
-libraries we’re loading.
-
-The other main feature helps us annotate the package load calls with
-their respective repositories and versions. Thanks to [Jonathan
+Another main feature helps us annotate the package load calls with their
+respective repositories and versions. Thanks to [Jonathan
 Carroll](https://github.com/jonocarroll) for the suggestion.
 
 This project came about after teaching workshops or helping peers and
@@ -25,7 +28,7 @@ might not know what certain packages are for.
 
 ## Installation
 
-You can install the development version of annotater from GitHub with:
+Install the development version of `annotater` from GitHub with:
 
 ``` r
 # install.packages("remotes")
@@ -33,8 +36,7 @@ remotes::install_github("luisDVA/annotater")
 ```
 
 I suggest restarting RStudio after the installation for the addins to
-load
-properly.
+load properly.
 
 ### When using the addins, make sure the focus (blinking cursor) is on an open RStudio R file in the ‘source’ pane.
 
