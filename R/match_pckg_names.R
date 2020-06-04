@@ -13,10 +13,10 @@ match_pckg_names <- function(string_og) {
   tb_names <- c("call", "package_name")
   uncommented_str <- stringr::str_match_all(string_og, stringr::regex("^(?:(?!#).)*$", multiline = TRUE))
   uncommented_str <- paste0(collapse = "\n", purrr::flatten_chr(uncommented_str))
-  lib_matches <- stringr::str_match_all(uncommented_str, "library\\((.*)\\)")
+  lib_matches <- stringr::str_match_all(uncommented_str, "^library\\((.*)\\)")
   colnames(lib_matches[[1]]) <- tb_names
   lib_tb <- tibble::as_tibble(lib_matches[[1]])
-  req_matches <- stringr::str_match_all(uncommented_str, "require\\((.*)\\)")
+  req_matches <- stringr::str_match_all(uncommented_str, "^require\\((.*)\\)")
   colnames(req_matches[[1]]) <- tb_names
   req_tb <- tibble::as_tibble(req_matches[[1]])
   dplyr::bind_rows(lib_tb, req_tb)

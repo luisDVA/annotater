@@ -14,6 +14,10 @@
 #' @export
 annotate_repo_source <- function(string_og) {
   out_tb <- match_pckg_names(string_og)
+  if (nrow(out_tb) == 0) cat("no matching library load calls")
+  if (nrow(out_tb) == 0) {
+    return(string_og)
+  }
   out_tb <- tibble::rowid_to_column(out_tb)
   pck_descs <- purrr::map(out_tb$package_name, utils::packageDescription,
     fields = c("Repository", "RemoteType", "biocViews")

@@ -13,7 +13,11 @@
 #' @export
 annotate_pckg_calls <- function(string_og, pckg_field = "Title") {
   out_tb <- match_pckg_names(string_og)
-  # get pckg titles
+  if (nrow(out_tb) == 0) cat("no matching library load calls")
+  if (nrow(out_tb) == 0) {
+    return(string_og)
+  }
+  # get pkg titles
   out_tb$pck_desc <- purrr::map_chr(out_tb$package_name, utils::packageDescription, fields = pckg_field)
   out_tb$pck_desc <- stringi::stri_replace_na(out_tb$pck_desc, "not installed on this machine")
   # new title variable
