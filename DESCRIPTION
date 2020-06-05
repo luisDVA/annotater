@@ -27,3 +27,5 @@ Imports:
     rlang
 URL: https://github.com/luisDVA/annotater
 BugReports: https://github.com/luisDVA/annotater/issues
+Suggests: 
+    testthat
