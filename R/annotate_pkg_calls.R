@@ -1,24 +1,24 @@
 #' Annotate Package Calls
 #'
-#' @param string_og text string (script) with package load calls
-#' @param pckg_field field from package description to retrieve, defaults to
+#' @param string_og Text string (script) with package load calls.
+#' @param pkg_field Field from package description to retrieve, defaults to
 #'   "Title"
 #'
-#' @return text string with package Title annotations. Will make note of
+#' @return Text string with package Title annotations. Will make note of
 #'   packages not currently installed.
 #' #'
 #' @examples
-#' test_string <- c("library(boot)\nrequire(Matrix)")
-#' annotate_pckg_calls(test_string)
+#' test_string <- c("library(boot)\nrequire(tools)")
+#' annotate_pkg_calls(test_string)
 #' @export
-annotate_pckg_calls <- function(string_og, pckg_field = "Title") {
-  out_tb <- match_pckg_names(string_og)
+annotate_pkg_calls <- function(string_og, pkg_field = "Title") {
+  out_tb <- match_pkg_names(string_og)
   if (nrow(out_tb) == 0) cat("no matching library load calls")
   if (nrow(out_tb) == 0) {
     return(string_og)
   }
   # get pkg titles
-  out_tb$pck_desc <- purrr::map_chr(out_tb$package_name, utils::packageDescription, fields = pckg_field)
+  out_tb$pck_desc <- purrr::map_chr(out_tb$package_name, utils::packageDescription, fields = pkg_field)
   out_tb$pck_desc <- stringi::stri_replace_na(out_tb$pck_desc, "not installed on this machine")
   # new title variable
   out_tb$annotated <- paste(out_tb$call, "#", out_tb$pck_desc)

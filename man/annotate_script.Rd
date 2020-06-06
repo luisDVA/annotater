@@ -4,16 +4,16 @@
 \alias{annotate_script}
 \title{Annotate Script}
 \usage{
-annotate_script(script_file, pckg_field)
+annotate_script(script_file, pkg_field = "Title")
 }
 \arguments{
-\item{script_file}{path to an R script}
+\item{script_file}{Path to an R script.}
 
-\item{pckg_field}{field from package description to retrieve, defaults to
-"Title"}
+\item{pkg_field}{Field from package description to retrieve, defaults to
+"Title".}
 }
 \value{
-currently prints the annotated script to the console
+Prints the annotated script to the console.
 }
 \description{
 Annotate Script

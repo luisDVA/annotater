@@ -1,14 +1,14 @@
 #' Match Package Names
 #'
-#' @param string_og text string (script) with package load calls
+#' @param string_og Text string (script) with package load calls.
 #'
-#' @return a tibble with the package load calls and package names
+#' @return A tibble with the package load calls and package names.
 #'
 #' @examples
 #' test_string <- c("library(boot)\nrequire(Matrix)")
-#' match_pckg_names(test_string)
+#' match_pkg_names(test_string)
 #' @export
-match_pckg_names <- function(string_og) {
+match_pkg_names <- function(string_og) {
   if (!is.character(string_og)) stop("input must be a character string")
   tb_names <- c("call", "package_name")
   uncommented_str <- stringr::str_match_all(string_og, stringr::regex("^(?:(?!#).)*$", multiline = TRUE))

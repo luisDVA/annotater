@@ -1,14 +1,14 @@
 #' Annotate Script
 #'
-#' @param script_file path to an R script
-#' @param pckg_field field from package description to retrieve, defaults to
-#'   "Title"
+#' @param script_file Path to an R script.
+#' @param pkg_field Field from package description to retrieve, defaults to
+#'   "Title".
 #'
-#' @return currently prints the annotated script to the console
+#' @return Prints the annotated script to the console.
 #'
 #' @export
-annotate_script <- function(script_file, pckg_field) {
+annotate_script <- function(script_file, pkg_field = "Title") {
   strlines <- readr::read_file(script_file)
-  annttd <- annotate_pckg_calls(strlines, pckg_field)
+  annttd <- annotate_pkg_calls(strlines, pkg_field)
   writeLines(annttd)
 }
