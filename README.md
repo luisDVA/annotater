@@ -3,10 +3,14 @@
 
 # annotater
 
-<img src='man/figures/logo.png' align="right" height="230" /> The goal
-of `annotater` is to annotate package load calls in character strings
-and R/Rmd files, so we can have an idea of the overall purpose of the
-libraries we’re loading.
+<img src='man/figures/logo.png' align="right" height="230" />
+<!-- badges: start --> [![Codecov test
+coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)
+<!-- badges: end -->
+
+The goal of `annotater` is to annotate package load calls in character
+strings and R/Rmd files, so we can have an idea of the overall purpose
+of the libraries we’re loading.
 
 ### What do my loaded packages do?
 
@@ -39,7 +43,7 @@ Restart RStudio after the installation for the addins to load properly.
 
 These are the possible annotations, which can be added to character
 strings (with one line per element), or applied to .R or .Rmd files in
-RStudio through their correspondng addins.
+RStudio through their corresponding addins.
 
 ``` r
 library(annotater)

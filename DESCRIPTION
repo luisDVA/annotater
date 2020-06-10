@@ -30,5 +30,6 @@ BugReports: https://github.com/luisDVA/annotater/issues
 Suggests: 
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 VignetteBuilder: knitr
