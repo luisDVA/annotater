@@ -3,7 +3,7 @@
 
 # annotater
 
-<img src='man/figures/logo.png' align="right" height="276" /> The goal
+<img src='man/figures/logo.png' align="right" height="250" /> The goal
 of annotater is to annotate package load calls in text strings and R/Rmd
 files, so we can have an idea of the overall purpose of the libraries
 we’re loading.
