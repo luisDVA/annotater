@@ -13,7 +13,7 @@ match_pkg_names <- function(string_og) {
   tb_names <- c("call", "package_name")
   uncommented_str <- stringr::str_match_all(string_og, stringr::regex("^(?:(?!#).)*$", multiline = TRUE))
   uncommented_str <- paste0(collapse = "\n", purrr::flatten_chr(uncommented_str))
-  lib_matches <- stringr::str_match_all(uncommented_str, stringr::regex("^library\\((.*)\\)", multiline =  TRUE))
+  lib_matches <- stringr::str_match_all(uncommented_str, stringr::regex("^library\\((.*)\\)", multiline = TRUE))
   colnames(lib_matches[[1]]) <- tb_names
   lib_tb <- tibble::as_tibble(lib_matches[[1]])
   req_matches <- stringr::str_match_all(uncommented_str, stringr::regex("^require\\((.*)\\)", multiline = TRUE))

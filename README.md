@@ -3,10 +3,10 @@
 
 # annotater
 
-<img src='man/figures/logo.png' align="right" height="250" /> The goal
-of annotater is to annotate package load calls in text strings and R/Rmd
-files, so we can have an idea of the overall purpose of the libraries
-we’re loading.
+<img src='man/figures/logo.png' align="right" height="230" /> The goal
+of `annotater` is to annotate package load calls in character strings
+and R/Rmd files, so we can have an idea of the overall purpose of the
+libraries we’re loading.
 
 ### What do my loaded packages do?
 
@@ -52,7 +52,7 @@ writeLines(annotate_repo_source(test_string))
 Entire .R files can also be parsed and annotated with the
 `annotate_script` function.
 
-Try it out\! Feedback welcome
+Feedback welcome
 
 Thanks to [Jonathan Carroll](https://github.com/jonocarroll), [Fırat
 Melih Yılmaz](https://twitter.com/fratmelhylmaz), and [Achaz von
