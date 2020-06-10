@@ -4,6 +4,11 @@ Binding: annotate_active_file
 Interactive: false
 
 Name: Annotate package repository sources in active file
-Description: Annotates the source for nonstandard packages
+Description: Adds source and version numbers
 Binding: annotate_repos_active_file
+Interactive: false
+
+Name: Annotate titles and repository sources in active file
+Description: Adds titles, sources, and versions
+Binding: annotate_repostitle_active
 Interactive: false

@@ -28,4 +28,7 @@ Imports:
 URL: https://github.com/luisDVA/annotater
 BugReports: https://github.com/luisDVA/annotater/issues
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,25 @@
+title: annotater
+url: annotater.liomys.mx
+template:
+  params:
+    bootswatch: spacelab
+reference:
+- title: Annotation builders
+  desc:
+  contents:
+  - '`annotate_pkg_calls`'
+  - '`annotate_repo_source`'
+  - '`annotate_script`'
+  - '`match_pkg_names`'
+- title: RStudio addins
+  desc:
+  contents:
+  - '`annotate_active_file`'
+  - '`annotate_repos_active_file`'
+  - '`annotate_repostitle_active`'
+- title: Helper functions
+  desc:
+  contents:
+  - '`align_annotations`'
+  - '`pkg_version`'
+  - '`repo_details`'

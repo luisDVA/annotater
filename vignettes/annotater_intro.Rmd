@@ -1,0 +1,75 @@
+---
+title: "Introduction to annotater"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{annotater_intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include = FALSE}
+library(annotater)
+```
+
+`annotater` came about after teaching workshops or helping peers and realizing that many issues relate to package installation failures and dependency issues for packages that were not even used in a problematic script. Scripts get passed around, code is copied and pasted, and we might not know what certain packages are for. Additionally, it is often useful to specify a package's source and version within a script, for reproducibility purposes and to keep a record of where any the packages can be obtained.
+
+
+## Package functions
+
+This package works around a suite of functions that match package load calls (i.e. `library` and `require`) in a character string with one line per element, and replace them with annotated versions.
+
+First, `match_pkg_names` produces a tibble of package load calls and package names.
+
+```{r}
+pkgs_string <- c("library(boot)\nrequire(Matrix)")
+match_pkg_names(pkgs_string)
+```
+
+The values in this tabular output are then passed to 
+`utils::packageDescription`, which parses and returns the 'DESCRIPTION' file of an installed package. Fields of interest from these descriptions are then used to build the annotations.
+
+The 'Title' field from a package's description makes for a good summary of what it does, so `annotate_pkg_calls` uses it to build annotations. These titles are inserted after each package load call, separated by a commenting symbol.
+
+```{r}
+pkgs_string <- c("library(boot)\nrequire(tools)")
+annotate_pkg_calls(pkgs_string)
+```
+
+A similar approach is used by `annotate_repo_source` to paste the repository source and version number.
+
+```{r}
+pkgs_string <- c("library(boot)\nrequire(lattice)")
+annotate_repo_source(pkgs_string)
+```
+
+Titles, repositories and version numbers can be annotated together in the output from `annotate_repostitle`.
+
+```{r}
+pkgs_string <- c("library(boot)\nrequire(lattice)")
+annotate_repostitle(pkgs_string)
+```
+
+## Usage in RStudio
+
+These main package functions can be called through their respective RStudio addins, written to work on the active .R or .Rmd file open in the Source pane.
+
+#### Annotate package calls in active file
+Describes the packages being loaded by calling `annotate_pkg_calls`.
+
+#### Annotate package repository sources in active file
+Adds the source and version by calling `annotate_repo_source`. This addin aligns the commenting symbols vertically for aesthetic purposes.
+
+
+#### Annotate titles and repository sources in active file
+Adds titles, sources, and versions by calling `annotate_repostitles`.
+
+
+
+
