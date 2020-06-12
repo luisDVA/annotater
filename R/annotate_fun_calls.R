@@ -27,7 +27,9 @@ annotate_fun_calls <- function(string_og) {
   fun_calls <- get_function_calls(string_og) # get script's function calls.
   out_tb$annotation <- unlist(map(gsub('"', "", out_tb$package_name), ~ {
     pkg_funs <- '"Package currently not installed"' # default annotation.
-    if (suppressWarnings(require(.x, character.only = TRUE))) {
+    if (
+      suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
+    ) {
       # if the package could be loaded, then get which are the called functions
       # that are exported by this package.
       pkg_funs <- fun_calls[fun_calls %in% getNamespaceExports(asNamespace(.x))]
