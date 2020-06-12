@@ -12,3 +12,8 @@ Name: Annotate titles and repository sources in active file
 Description: Adds titles, sources, and versions
 Binding: annotate_repostitle_active
 Interactive: false
+
+Name: Annotate each package's function calls
+Description: Adds used functions
+Binding: annotate_fun_calls_active_file
+Interactive: false
