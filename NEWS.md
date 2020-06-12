@@ -1,4 +1,9 @@
+# annotater 0.1.3
+
+* Added the `annotate_fun_calls` annotator.
+
 # annotater 0.1.2
+
 Repo sources vertically aligned for nicer annotations.
 
 # annotater 0.1.1
