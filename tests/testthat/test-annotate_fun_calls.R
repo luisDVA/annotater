@@ -73,10 +73,18 @@ test_that("require call with one fun that is in two packages", {
   )
 })
 
-test_that("library and require with quotes", {
+test_that("library and require with double quotes", {
   test_string <- 'library("dplyr")\nrequire("stats")\ndata.frame() %>% filter()'
   expect_equal(
     annotate_fun_calls(test_string),
     'library("dplyr") # %>% filter\nrequire("stats") # filter\ndata.frame() %>% filter()'
+  )
+})
+
+test_that("library and require with single quotes", {
+  test_string <- "library('dplyr')\nrequire('stats')\ndata.frame() %>% filter()"
+  expect_equal(
+    annotate_fun_calls(test_string),
+    "library('dplyr') # %>% filter\nrequire('stats') # filter\ndata.frame() %>% filter()"
   )
 })
