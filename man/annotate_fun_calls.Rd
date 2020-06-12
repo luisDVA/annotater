@@ -20,5 +20,6 @@ Annotate Function Calls
 }
 \examples{
 test_string <- c("library(boot)\nrequire(lattice)\ncanonical.theme()")
-annotate_fun_calls(test_string)
+cat(annotate_fun_calls(test_string))
+
 }

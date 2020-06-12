@@ -9,7 +9,8 @@
 #'
 #' @examples
 #' test_string <- c("library(boot)\nrequire(lattice)\ncanonical.theme()")
-#' annotate_fun_calls(test_string)
+#' cat(annotate_fun_calls(test_string))
+#'
 #' @importFrom dplyr `%>%` filter pull
 #' @importFrom purrr map
 #' @importFrom stringi stri_replace_all_fixed

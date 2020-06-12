@@ -160,7 +160,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>test_string</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"library(boot)\nrequire(lattice)\ncanonical.theme()"</span>)
-<span class='fu'>annotate_fun_calls</span>(<span class='no'>test_string</span>)</div><div class='output co'>#&gt; [1] "library(boot) # \"No used functions found\"\nrequire(lattice) # canonical.theme\ncanonical.theme()"</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>annotate_fun_calls</span>(<span class='no'>test_string</span>))</div><div class='output co'>#&gt; library(boot) # "No used functions found"
+#&gt; require(lattice) # canonical.theme
+#&gt; canonical.theme()</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
