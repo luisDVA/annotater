@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">annotater</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -125,6 +125,11 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">pkgs_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"library(boot)\nrequire(lattice)"</span>)
 <span class="fu"><a href="../reference/annotate_repostitle.html">annotate_repostitle</a></span>(<span class="no">pkgs_string</span>)
 <span class="co">#&gt; [1] "library(boot) # Bootstrap Functions (Originally by Angelo Canty for S), CRAN v1.3-25\nrequire(lattice) # Trellis Graphics for R, CRAN v0.20-41"</span></pre></body></html></div>
+<p>Function calls coming from each loaded package can also be automatically annotated.</p>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">pkgs_string</span> <span class="kw">&lt;-</span> <span class="st">"library(dplyr)\ndata.frame() %&gt;% filter()"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="../reference/annotate_fun_calls.html">annotate_fun_calls</a></span>(<span class="no">pkgs_string</span>))
+<span class="co">#&gt; library(dplyr) # %&gt;% filter</span>
+<span class="co">#&gt; data.frame() %&gt;% filter()</span></pre></body></html></div>
 </div>
 <div id="usage-in-rstudio" class="section level2">
 <h2 class="hasAnchor">
@@ -144,6 +149,11 @@
 <h4 class="hasAnchor">
 <a href="#annotate-titles-and-repository-sources-in-active-file" class="anchor"></a>Annotate titles and repository sources in active file</h4>
 <p>Adds titles, sources, and versions by calling <code>annotate_repostitles</code>.</p>
+</div>
+<div id="annotate-each-packages-function-calls" class="section level4">
+<h4 class="hasAnchor">
+<a href="#annotate-each-packages-function-calls" class="anchor"></a>Annotate each package’s function calls</h4>
+<p>After each package loading (<code>library</code> or <code>require</code>), it adds a comment informing which functions from this package, in the current script, are being used. This is done by calling <code>annotate_fun_calls</code>.</p>
 </div>
 </div>
   </div>
