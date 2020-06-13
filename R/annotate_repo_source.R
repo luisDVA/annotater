@@ -19,7 +19,7 @@ annotate_repo_source <- function(string_og) {
     return(string_og)
   }
   out_tb <- tibble::rowid_to_column(out_tb)
-  pck_descs <- purrr::map(out_tb$package_name, utils::packageDescription,
+  pck_descs <- purrr::map(out_tb$pkgname_clean, utils::packageDescription,
     fields = c("Repository", "RemoteType", "biocViews")
   )
   pck_descs <- purrr::map(pck_descs, as.list)

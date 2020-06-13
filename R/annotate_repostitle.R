@@ -22,7 +22,7 @@ annotate_repostitle <- function(string_og) {
   }
   out_tb <- tibble::rowid_to_column(out_tb)
   # get pkg titles
-  out_tb$pck_title <- purrr::map_chr(out_tb$package_name, utils::packageDescription, fields = "Title")
+  out_tb$pck_title <- purrr::map_chr(out_tb$pkgname_clean, utils::packageDescription, fields = "Title")
   out_tb$pck_title <- stringi::stri_replace_na(out_tb$pck_title, "not installed on this machine")
   # new title variable
   out_tb$title <- paste(out_tb$pck_title)

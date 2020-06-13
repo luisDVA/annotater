@@ -19,5 +19,6 @@ match_pkg_names <- function(string_og) {
   req_matches <- stringr::str_match_all(uncommented_str, stringr::regex("^require\\((.*)\\)", multiline = TRUE))
   colnames(req_matches[[1]]) <- tb_names
   req_tb <- tibble::as_tibble(req_matches[[1]])
-  dplyr::bind_rows(lib_tb, req_tb)
+  libreqout <- dplyr::bind_rows(lib_tb, req_tb)
+  dplyr::mutate(libreqout, pkgname_clean = stringr::str_remove_all(package_name, "\"|'"))
 }

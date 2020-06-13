@@ -90,25 +90,25 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="annotater-" class="section level1">
+<div id="annotater" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#annotater-" class="anchor"></a>annotater <img src="reference/figures/logo.png" align="right" height="230">
-</h1></div>
-<!-- badges: start -->
-
+<a href="#annotater" class="anchor"></a>annotater</h1></div>
+<p><img src="reference/figures/logo.png" align="right" height="230"><!-- badges: start --><a href="https://codecov.io/gh/luisDVA/annotater?branch=master"><img src="https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
 <p>The goal of <code>annotater</code> is to annotate package load calls in character strings and R/Rmd files, so we can have an idea of the overall purpose of the libraries we’re loading.</p>
 <div id="what-do-my-loaded-packages-do" class="section level3">
 <h3 class="hasAnchor">
 <a href="#what-do-my-loaded-packages-do" class="anchor"></a>What do my loaded packages do?</h3>
-<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif" align="center" width="340px"></p>
+<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif" align="center" width="370px"></p>
 </div>
 <div id="where-did-i-get-them" class="section level3">
 <h3 class="hasAnchor">
 <a href="#where-did-i-get-them" class="anchor"></a>Where did I get them?</h3>
-<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif" align="center" width="340px"></p>
+<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif" align="center" width="370px"></p>
 <hr>
 <p>The two annotation types are also available together:</p>
-<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif" align="center" width="340px"></p>
+<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif" align="center" width="370px"></p>
+<p>Thanks to a Pull Request by <a href="https://github.com/jcrodriguez1989">Juan Cruz Rodriguez</a>, we can now annotate which functions from each package are being called in a script.</p>
+<p><img src="https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif" align="center" width="370px"></p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -130,8 +130,7 @@
 <span class="no">test_string</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"library(boot)\nrequire(Matrix)"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="reference/annotate_pkg_calls.html">annotate_pkg_calls</a></span>(<span class="no">test_string</span>))
 <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="reference/annotate_repo_source.html">annotate_repo_source</a></span>(<span class="no">test_string</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="reference/annotate_repo_source.html">annotate_repo_source</a></span>(<span class="no">test_string</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="reference/annotate_fun_calls.html">annotate_fun_calls</a></span>(<span class="no">test_string</span>))</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="fu"><a href="reference/annotate_repo_source.html">annotate_repo_source</a></span>(<span class="no">test_string</span>))</pre></div>
 <p>Entire .R files can also be parsed and annotated with the <code>annotate_script</code> function.</p>
 <p>Feedback welcome</p>
 <p>Thanks to <a href="https://github.com/jonocarroll">Jonathan Carroll</a>, <a href="https://twitter.com/fratmelhylmaz">Fırat Melih Yılmaz</a>, and <a href="https://github.com/achazhardenberg">Achaz von Hardenberg</a> for feedback and suggestions.</p>
@@ -163,13 +162,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://codecov.io/github/luisDVA/annotater?branch=master"><img src="https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 

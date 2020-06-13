@@ -1,10 +1,10 @@
 # annotater 0.1.3
 
-* Added the `annotate_fun_calls` annotator.
+* Added the `annotate_fun_calls` annotator, cooler logo, and support for quoted package names.
 
 # annotater 0.1.2
 
-Repo sources vertically aligned for nicer annotations.
+* Repo sources vertically aligned for nicer annotations.
 
 # annotater 0.1.1
 

@@ -1,12 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# annotater <img src='man/figures/logo.png' align="right" height="230"/>
+# annotater
 
-<!-- badges: start -->
-
-[![Coverage
-status](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/github/luisDVA/annotater?branch=master)
+<img src='man/figures/logo.png' align="right" height="230" />
+<!-- badges: start --> [![Codecov test
+coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)
 <!-- badges: end -->
 
 The goal of `annotater` is to annotate package load calls in character
@@ -15,17 +14,23 @@ of the libraries we’re loading.
 
 ### What do my loaded packages do?
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif' align="center" width="340px" />
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif' align="center" width="370px" />
 
 ### Where did I get them?
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif' align="center" width="340px" />
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif' align="center" width="370px" />
 
 -----
 
 The two annotation types are also available together:
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif' align="center" width="340px" />
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif' align="center" width="370px" />
+
+Thanks to a Pull Request by [Juan Cruz
+Rodriguez](https://github.com/jcrodriguez1989), we can now annotate
+which functions from each package are being called in a script.
+
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif' align="center" width="370px" />
 
 ## Installation
 
@@ -52,7 +57,6 @@ test_string <-c("library(boot)\nrequire(Matrix)")
 writeLines(annotate_pkg_calls(test_string))
 writeLines(annotate_repo_source(test_string))
 writeLines(annotate_repo_source(test_string))
-writeLines(annotate_fun_calls(test_string))
 ```
 
 Entire .R files can also be parsed and annotated with the

@@ -18,7 +18,7 @@ annotate_pkg_calls <- function(string_og, pkg_field = "Title") {
     return(string_og)
   }
   # get pkg titles
-  out_tb$pck_desc <- purrr::map_chr(out_tb$package_name, utils::packageDescription, fields = pkg_field)
+  out_tb$pck_desc <- purrr::map_chr(out_tb$pkgname_clean, utils::packageDescription, fields = pkg_field)
   out_tb$pck_desc <- stringi::stri_replace_na(out_tb$pck_desc, "not installed on this machine")
   # new title variable
   out_tb$annotated <- paste(out_tb$call, "#", out_tb$pck_desc)

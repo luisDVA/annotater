@@ -56,12 +56,16 @@ pkgs_string <- c("library(boot)\nrequire(lattice)")
 annotate_repostitle(pkgs_string)
 ```
 
-Function calls coming from each loaded package can also be automatically annotated.
+To annotate which functions are being called from each loaded package, use `annotate_fun_calls`.
 
 ```{r}
-pkgs_string <- "library(dplyr)\ndata.frame() %>% filter()"
-cat(annotate_fun_calls(pkgs_string))
+testcode <- c('library(purrr) 
+x <- list("a", 1, c("bo","bi","bu"))
+pluck(x, 1)
+map(x, pluck, 2)')
+annotate_fun_calls(testcode)
 ```
+
 
 ## Usage in RStudio
 
@@ -73,11 +77,11 @@ Describes the packages being loaded by calling `annotate_pkg_calls`.
 #### Annotate package repository sources in active file
 Adds the source and version by calling `annotate_repo_source`. This addin aligns the commenting symbols vertically for aesthetic purposes.
 
+
 #### Annotate titles and repository sources in active file
 Adds titles, sources, and versions by calling `annotate_repostitles`.
 
+
 #### Annotate each package's function calls
-After each package loading (`library` or `require`), it adds a comment informing
-which functions from this package, in the current script, are being used.
-This is done by calling `annotate_fun_calls`.
+Adds all the unique functions being called by each loaded package, calls `annotate_fun_calls`.
 

@@ -107,11 +107,11 @@
 <p>First, <code>match_pkg_names</code> produces a tibble of package load calls and package names.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">pkgs_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"library(boot)\nrequire(Matrix)"</span>)
 <span class="fu"><a href="../reference/match_pkg_names.html">match_pkg_names</a></span>(<span class="no">pkgs_string</span>)
-<span class="co">#&gt; # A tibble: 2 x 2</span>
-<span class="co">#&gt;   call            package_name</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;       </span>
-<span class="co">#&gt; 1 library(boot)   boot        </span>
-<span class="co">#&gt; 2 require(Matrix) Matrix</span></pre></body></html></div>
+<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="co">#&gt;   call            package_name pkgname_clean</span>
+<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;        </span>
+<span class="co">#&gt; 1 library(boot)   boot         boot         </span>
+<span class="co">#&gt; 2 require(Matrix) Matrix       Matrix</span></pre></body></html></div>
 <p>The values in this tabular output are then passed to <code><a href="https://rdrr.io/r/utils/packageDescription.html">utils::packageDescription</a></code>, which parses and returns the ‘DESCRIPTION’ file of an installed package. Fields of interest from these descriptions are then used to build the annotations.</p>
 <p>The ‘Title’ field from a package’s description makes for a good summary of what it does, so <code>annotate_pkg_calls</code> uses it to build annotations. These titles are inserted after each package load call, separated by a commenting symbol.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">pkgs_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"library(boot)\nrequire(tools)"</span>)
@@ -125,11 +125,13 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">pkgs_string</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"library(boot)\nrequire(lattice)"</span>)
 <span class="fu"><a href="../reference/annotate_repostitle.html">annotate_repostitle</a></span>(<span class="no">pkgs_string</span>)
 <span class="co">#&gt; [1] "library(boot) # Bootstrap Functions (Originally by Angelo Canty for S), CRAN v1.3-25\nrequire(lattice) # Trellis Graphics for R, CRAN v0.20-41"</span></pre></body></html></div>
-<p>Function calls coming from each loaded package can also be automatically annotated.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">pkgs_string</span> <span class="kw">&lt;-</span> <span class="st">"library(dplyr)\ndata.frame() %&gt;% filter()"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="../reference/annotate_fun_calls.html">annotate_fun_calls</a></span>(<span class="no">pkgs_string</span>))
-<span class="co">#&gt; library(dplyr) # %&gt;% filter</span>
-<span class="co">#&gt; data.frame() %&gt;% filter()</span></pre></body></html></div>
+<p>To annotate which functions are being called from each loaded package, use <code>annotate_fun_calls</code>.</p>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">testcode</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'library(purrr) 
+x &lt;- list("a", 1, c("bo","bi","bu"))
+pluck(x, 1)
+map(x, pluck, 2)'</span>)
+<span class="fu"><a href="../reference/annotate_fun_calls.html">annotate_fun_calls</a></span>(<span class="no">testcode</span>)
+<span class="co">#&gt; [1] "library(purrr) # pluck map \nx &lt;- list(\"a\", 1, c(\"bo\",\"bi\",\"bu\"))\npluck(x, 1)\nmap(x, pluck, 2)"</span></pre></body></html></div>
 </div>
 <div id="usage-in-rstudio" class="section level2">
 <h2 class="hasAnchor">
@@ -153,7 +155,7 @@
 <div id="annotate-each-packages-function-calls" class="section level4">
 <h4 class="hasAnchor">
 <a href="#annotate-each-packages-function-calls" class="anchor"></a>Annotate each package’s function calls</h4>
-<p>After each package loading (<code>library</code> or <code>require</code>), it adds a comment informing which functions from this package, in the current script, are being used. This is done by calling <code>annotate_fun_calls</code>.</p>
+<p>Adds all the unique functions being called by each loaded package, calls <code>annotate_fun_calls</code>.</p>
 </div>
 </div>
   </div>
