@@ -10,6 +10,7 @@ reference:
   - '`annotate_pkg_calls`'
   - '`annotate_repo_source`'
   - '`annotate_script`'
+  - '`annotate_fun_calls`'
   - '`match_pkg_names`'
 - title: RStudio addins
   desc:
@@ -17,6 +18,7 @@ reference:
   - '`annotate_active_file`'
   - '`annotate_repos_active_file`'
   - '`annotate_repostitle_active`'
+  - '`annotate_fun_calls_active_file`'
 - title: Helper functions
   desc:
   contents:
