@@ -14,9 +14,11 @@ knitr::opts_chunk$set(
 ```
 # annotater
 <img src='man/figures/logo.png' align="right" height="230" />
+  
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)
-<!-- badges: end -->
+[![Codecov test coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)    
+<!-- badges: end -->  
+
 
 The goal of `annotater` is to annotate package load calls in character strings and R/Rmd files, so we can have an idea of the overall purpose of the libraries we're loading.
 
@@ -37,7 +39,6 @@ The two annotation types are also available together:
 Thanks to a Pull Request by [Juan Cruz Rodriguez](https://github.com/jcrodriguez1989), we can now annotate which functions from each package are being called in a script.
 
 <img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif' align="center" width="370px" />
-
 
 ## Installation
 

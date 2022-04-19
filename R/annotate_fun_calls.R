@@ -25,31 +25,126 @@ annotate_fun_calls <- function(string_og) {
     cat("no matching library load calls")
     return(string_og)
   }
+
   fun_calls <- get_function_calls(string_og) # get script's function calls.
-  # Removing quotes from package loading name!
-  out_tb$annotation <- unlist(map(gsub("\"|'", "", out_tb$package_name), ~ {
-    pkg_funs <- '"Package currently not installed"' # default annotation.
-    if (
-      suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
-    ) {
-      # if the package could be loaded, then get which are the called functions
-      # that are exported by this package.
-      pkg_funs <- fun_calls[fun_calls %in% getNamespaceExports(asNamespace(.x))]
-    }
-    if (length(pkg_funs) == 0) {
-      # notify which packages do not have functions being used.
-      pkg_funs <- '"No used functions found"'
-    }
-    paste(pkg_funs, collapse = " ") # return a final string.
-  }))
-  # the annotation is going to be the package call, plus a comment with its
-  # function calls.
-  out_tb$annotated <- paste0(out_tb$call, " # ", out_tb$annotation)
-  # final line formatting.
-  align_annotations(stringi::stri_replace_all_fixed(
-    str = string_og, pattern = out_tb$call,
-    replacement = out_tb$annotated, vectorize_all = FALSE
-  ))
+
+  # build annotations
+  if (all(!grepl("p_load", out_tb$call))) { # no pacman calls
+    # Removing quotes from package loading name!
+    out_tb$annotation <- unlist(purrr::map(out_tb$pkgname_clean, ~ {
+      pkg_funs <- '"Package currently not installed"' # default annotation
+      if (
+        suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
+      ) {
+        # if the package could be loaded, then get which are the called functions
+        # that are exported by this package.
+        pkg_funs <- fun_calls[fun_calls %in% getNamespaceExports(asNamespace(.x))]
+      }
+      if (length(pkg_funs) == 0) {
+        # notify which packages do not have functions being used.
+        pkg_funs <- '"No used functions found"'
+      }
+      paste(pkg_funs, collapse = " ") # return a final string.
+    }))
+    # the annotation is going to be the package call, plus a comment with its
+    # function calls.
+
+    out_tb$annotated <- paste0(out_tb$call, " # ", out_tb$annotation)
+    # final line formatting.
+    return(
+      align_annotations(stringi::stri_replace_all_fixed(
+        str = string_og, pattern = out_tb$call,
+        replacement = out_tb$annotated, vectorize_all = FALSE
+      ))
+    )
+  }
+
+  if (all(grepl("p_load", out_tb$call))) { # only pacman calls
+    pacld <- out_tb[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld$pkgnamesep <- paste0(pacld$package_name, ",")
+    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", pkgnamesep), pkgnamesep))
+    pacld$annotation <- unlist(purrr::map(gsub("\"|'", "", pacld$package_name), ~ {
+      pkg_funs <- '"Package currently not installed"' # default annotation.
+      if (
+        suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
+      ) {
+        # if the package could be loaded, then get which are the called functions
+        # that are exported by this package.
+        pkg_funs <- fun_calls[fun_calls %in% getNamespaceExports(asNamespace(.x))]
+      }
+      if (length(pkg_funs) == 0) {
+        #  notify which packages do not have functions being used.
+        pkg_funs <- '"No used functions found"'
+      }
+      paste(pkg_funs, collapse = " ") # return a final string.
+    }))
+    pacld$annotated <- paste0(pacld$call, " # ", pacld$annotation)
+    pacld$annotatedpac <- paste(pacld$pkgnamesep, "#", pacld$annotation)
+    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(annotatedpac, collapse = "\n"))
+    pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
+    pacld <- dplyr::mutate(pacld, annotpac = paste(ldcalls, pkgs, ")", sep = "\n"))
+    return(
+      align_annotations(stringi::stri_replace_all_fixed(
+        str = string_og, pattern = pacld$call,
+        replacement = pacld$annotpac, vectorize_all = FALSE
+      ))
+    )
+  }
+
+  if (any(grepl("p_load", out_tb$call)) & any(grepl("libr|req", out_tb$call))) { # pacman and base calls
+    pacld <- out_tb[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld$pkgnamesep <- paste0(pacld$package_name, ",")
+    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", pkgnamesep), pkgnamesep))
+    pacld$annotation <- unlist(purrr::map(gsub("\"|'", "", pacld$package_name), ~ {
+      pkg_funs <- '"Package currently not installed"' # default annotation.
+      if (
+        suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
+      ) {
+        # if the package could be loaded, then get which are the called functions
+        # that are exported by this package.
+        pkg_funs <- fun_calls[fun_calls %in% getNamespaceExports(asNamespace(.x))]
+      }
+      if (length(pkg_funs) == 0) {
+        #  notify which packages do not have functions being used.
+        pkg_funs <- '"No used functions found"'
+      }
+      paste(pkg_funs, collapse = " ") # return a final string.
+    }))
+    pacld$annotated <- paste0(pacld$call, " # ", pacld$annotation)
+    pacld$annotatedpac <- paste0(pacld$pkgnamesep, " # ", pacld$annotation)
+    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(annotatedpac, collapse = "\n"))
+    pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
+    pacld <- dplyr::mutate(pacld, annotpac = paste(ldcalls, pkgs, ")", sep = "\n"))
+    string_og <- stringi::stri_replace_all_fixed(
+      str = string_og, pattern = pacld$call,
+      replacement = pacld$annotpac, vectorize_all = FALSE
+    )
+    out_tb <- out_tb[!stringr::str_detect(out_tb$call, ".+load\\("), ]
+    out_tb$annotation <- unlist(purrr::map(gsub("\"|'", "", out_tb$package_name), ~ {
+      pkg_funs <- '"Package currently not installed"' # default annotation.
+      if (
+        suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
+      ) {
+        # if the package could be loaded, then get which are the called functions
+        # that are exported by this package.
+        pkg_funs <- fun_calls[fun_calls %in% getNamespaceExports(asNamespace(.x))]
+      }
+      if (length(pkg_funs) == 0) {
+        #  notify which packages do not have functions being used.
+        pkg_funs <- '"No used functions found"'
+      }
+      paste(pkg_funs, collapse = " ") # return a final string.
+    }))
+    out_tb$annotated <- paste0(out_tb$call, " # ", out_tb$annotation)
+    return(
+      align_annotations(
+        stringi::stri_replace_all_fixed(
+          str = string_og, pattern = out_tb$call,
+          replacement = out_tb$annotated, vectorize_all = FALSE
+        )
+      )
+    )
+  }
 }
 
 # Returns function calls in a code (as string)

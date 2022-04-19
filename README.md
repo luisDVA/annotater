@@ -4,8 +4,11 @@
 # annotater
 
 <img src='man/figures/logo.png' align="right" height="230" />
-<!-- badges: start --> [![Codecov test
-coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)
+
+<!-- badges: start -->
+
+[![Codecov test
+coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)  
 <!-- badges: end -->
 
 The goal of `annotater` is to annotate package load calls in character
@@ -20,7 +23,7 @@ of the libraries we’re loading.
 
 <img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif' align="center" width="370px" />
 
------
+------------------------------------------------------------------------
 
 The two annotation types are also available together:
 

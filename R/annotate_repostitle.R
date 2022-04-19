@@ -11,7 +11,7 @@
 #'   introduced into your script.
 #' @examples
 #' test_string <- c("library(boot)\nrequire(lattice)")
-#' annotate_repotitle(test_string)
+#' annotate_repostitle(test_string)
 #' @importFrom rlang .data
 #' @export
 annotate_repostitle <- function(string_og) {
@@ -27,7 +27,7 @@ annotate_repostitle <- function(string_og) {
   # new title variable
   out_tb$title <- paste(out_tb$pck_title)
   # repo descriptions
-  pck_descs <- purrr::map(out_tb$package_name, utils::packageDescription,
+  pck_descs <- purrr::map(out_tb$pkgname_clean, utils::packageDescription,
     fields = c("Repository", "RemoteType", "biocViews")
   )
   pck_descs <- purrr::map(pck_descs, as.list)
@@ -42,17 +42,61 @@ annotate_repostitle <- function(string_og) {
       "CRAN" ~ "CRAN",
     .data$repo == "Bioconductor" ~ "Bioconductor",
     .data$repo == "none" ~ "not installed on this machine",
-    TRUE ~ repo_details(.data$package_name)
+    TRUE ~ repo_details(.data$pkgname_clean)
   ), annotation = dplyr::case_when(stringr::str_detect(
     user_repo,
     "/"
   ) ~ paste0("[", .data$repo, "::", user_repo, "]"), TRUE ~ user_repo))
-  pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(.data$package_name))
+  pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(gsub("[\'\"]", "", .data$package_name)))
+
   # build annotations
-  pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, ", ", pck_descs$annotation, " v", pck_descs$version)
-  # edit string
-  stringi::stri_replace_all_fixed(
-    str = string_og, pattern = out_tb$call,
-    replacement = pck_descs$annotated, vectorize_all = FALSE
-  )
+  if (all(!grepl("p_load", pck_descs$call))) { # no pacman calls
+    pck_descs$annotated <- paste0(pck_descs$package_name, " # ", pck_descs$title, ", ", pck_descs$annotation, " v", pck_descs$version)
+
+    return(
+      align_annotations(stringi::stri_replace_all_fixed(
+        str = string_og, pattern = pck_descs$call,
+        replacement = pck_descs$annotated, vectorize_all = FALSE
+      ))
+    )
+  }
+
+  if (all(grepl("p_load", pck_descs$call))) { # only pacman calls
+    pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
+    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", pkgnamesep), pkgnamesep))
+    pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, pacld$annotation, " v", pacld$version)
+    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(annotatedpac, collapse = "\n"))
+    pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
+    pacld <- dplyr::mutate(pacld, annotpac = paste(ldcalls, pkgs, ")", sep = "\n "))
+    return(
+      align_annotations(stringi::stri_replace_all_fixed(
+        str = string_og, pattern = pacld$call,
+        replacement = pacld$annotpac, vectorize_all = FALSE
+      ))
+    )
+  }
+
+  if (any(grepl("p_load", pck_descs$call)) & any(grepl("libr|req", out_tb$call))) { # pacman and base calls
+    pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
+    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", pkgnamesep), pkgnamesep))
+    pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, " ", pacld$annotation, " v", pacld$version)
+    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(annotatedpac, collapse = "\n "))
+    pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
+    pacld <- dplyr::mutate(pacld, annotpac = paste(ldcalls, pkgs, ")", sep = "\n "))
+    string_og <- stringi::stri_replace_all_fixed(
+      str = string_og, pattern = pacld$call,
+      replacement = pacld$annotpac, vectorize_all = FALSE
+    )
+    pck_descs <- pck_descs[!stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, pck_descs$annotation, " v", pck_descs$version)
+
+    return(
+      stringi::stri_replace_all_fixed(
+        str = string_og, pattern = out_tb$call,
+        replacement = pck_descs$annotated, vectorize_all = FALSE
+      )
+    )
+  }
 }

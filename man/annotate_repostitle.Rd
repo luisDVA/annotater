@@ -24,5 +24,5 @@ Some annotations may be long, check for possible line breaks
 }
 \examples{
 test_string <- c("library(boot)\nrequire(lattice)")
-annotate_repotitle(test_string)
+annotate_repostitle(test_string)
 }
