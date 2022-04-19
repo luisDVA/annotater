@@ -1,3 +1,5 @@
+# annotater 0.2.0
+
 # annotater 0.1.3
 
 * Added the `annotate_fun_calls` annotator, cooler logo, and support for quoted package names.
