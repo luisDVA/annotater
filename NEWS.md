@@ -1,5 +1,9 @@
 # annotater 0.2.0
 
+* Adds support for packages loaded with the `pacman` package  
+
+* Fixes library load call matching for indented code
+
 # annotater 0.1.3
 
 * Added the `annotate_fun_calls` annotator, cooler logo, and support for quoted package names.
