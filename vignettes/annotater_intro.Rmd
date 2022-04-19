@@ -2,7 +2,7 @@
 title: "Introduction to annotater"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{annotater_intro}
+  %\VignetteIndexEntry{Introduction to annotater}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

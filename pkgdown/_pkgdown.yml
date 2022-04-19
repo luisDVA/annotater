@@ -23,5 +23,6 @@ reference:
   desc:
   contents:
   - '`align_annotations`'
+  - '`annotate_repostitle`'
   - '`pkg_version`'
   - '`repo_details`'
