@@ -23,7 +23,7 @@ library(annotater)
 
 ## Package functions
 
-This package works around a suite of functions that match package load calls (i.e. `library` and `require`) in a character string with one line per element, and replace them with annotated versions.
+This package works around a suite of functions that match package load calls (i.e. `library` and `require`) in a character string with one line per element, and replace them with annotated versions. As of version 0.2.0, loading packages with `pacman::p_load` is also supported. 
 
 First, `match_pkg_names` produces a tibble of package load calls and package names.
 
