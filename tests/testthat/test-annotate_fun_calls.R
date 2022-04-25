@@ -81,10 +81,25 @@ test_that("library and require with double quotes", {
   )
 })
 
-test_that("library and require with single quotes", {
-  test_string <- "library('dplyr')\nrequire('stats')\ndata.frame() %>% filter()"
+test_that("pacman calls split up and annotated", {
+  test_string <- "pacman::p_load(dplyr,purrr) \nfilter()\nmap2_chr()"
   expect_equal(
     annotate_fun_calls(test_string),
-    "library('dplyr') # %>% filter\nrequire('stats') # filter\ndata.frame() %>% filter()"
+    "pacman::p_load(\ndplyr, # filter\npurrr # map2_chr\n) \nfilter()\nmap2_chr()"
+    )
+})
+
+test_that("mixed base and pacman calls split up and annotated", {
+  test_string <- "pacman::p_load(purrr)\nlibrary(stringr)\nstr_detect(y); pluck(x); discard()"
+  expect_equal(
+    annotate_fun_calls(test_string),
+    "pacman::p_load(\npurrr # pluck discard\n)\nlibrary(stringr) # str_detect\nstr_detect(y); pluck(x); discard()"
   )
+})
+
+test_that("mixed base and pacman calls call but no funs", {
+  test_string <- "pacman::p_load(purrr)\nlibrary(stringr)"
+  expect_equal(
+    annotate_fun_calls(test_string),
+    "pacman::p_load(\npurrr # \"No used functions found\"\n)\nlibrary(stringr) # \"No used functions found\""  )
 })
