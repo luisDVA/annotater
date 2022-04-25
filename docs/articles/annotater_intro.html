@@ -99,7 +99,7 @@
 <div class="section level2">
 <h2 id="package-functions">Package functions<a class="anchor" aria-label="anchor" href="#package-functions"></a>
 </h2>
-<p>This package works around a suite of functions that match package load calls (i.e. <code>library</code> and <code>require</code>) in a character string with one line per element, and replace them with annotated versions.</p>
+<p>This package works around a suite of functions that match package load calls (i.e. <code>library</code> and <code>require</code>) in a character string with one line per element, and replace them with annotated versions. As of version 0.2.0, loading packages with <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">pacman::p_load</a></code> is also supported.</p>
 <p>First, <code>match_pkg_names</code> produces a tibble of package load calls and package names.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(Matrix)"</span><span class="op">)</span>
