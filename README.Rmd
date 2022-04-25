@@ -24,31 +24,31 @@ The goal of `annotater` is to annotate package load calls in character strings a
 
 ### What do my loaded packages do?
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif' align="center" width="370px" />
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif' align="center" width="400px" />
 
 ### Where did I get them?
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif' align="center" width="370px" />
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif' align="center" width="400px" />
 
 ---
 
 The two annotation types are also available together:
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif' align="center" width="370px" />
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif' align="center" width="400px" />
 
 Thanks to [Juan Cruz Rodriguez](https://github.com/jcrodriguez1989), we can now annotate which functions from each package are being called in a script.
 
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif' align="center" width="370px" />  
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif' align="center" width="400px" />  
 
 ## `pacman` compatibility
 
 Users of the [`pacman`](https://cran.r-project.org/package=pacman) package can now use all `annotater` functions on `p_load` calls. This includes calls with multiple package names (e.g. `p_load(ggplot2,purrr)`), which will be split up across lines for readability.  
 
   
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotpacmanFns.gif' align="center" width="370px" />  
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotpacmanFns.gif' align="center" width="400px" />  
   
   
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotpacmanRepos.gif' align="center" width="370px" />  
+<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotpacmanRepos.gif' align="center" width="400px" />  
 
 
 ## Installation
