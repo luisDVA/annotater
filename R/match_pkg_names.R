@@ -19,11 +19,17 @@ match_pkg_names <- function(string_og) {
   req_matches <- stringr::str_match_all(uncommented_str, stringr::regex("^require\\((.*)\\)", multiline = TRUE))
   colnames(req_matches[[1]]) <- tb_names
   req_tb <- tibble::as_tibble(req_matches[[1]])
+  # warn if there are line breaks in p_load calls
+  if (stringr::str_detect(string_og, stringr::regex("^p_load\\(.*\n",
+    multiline = TRUE
+  ))) {
+    warning("Remove line breaks from 'pacman' package calls to avoid missing annotations.")
+  }
   pac_matches <- stringr::str_match_all(string_og, stringr::regex("^p_load\\((.*)\\)",
-                                                                  multiline = TRUE
+    multiline = TRUE
   ))
   pacns_matches <- stringr::str_match_all(string_og, stringr::regex("^pacman::p_load\\((.*)\\)",
-                                                                    multiline = TRUE
+    multiline = TRUE
   ))
   colnames(pac_matches[[1]]) <- tb_names
   colnames(pacns_matches[[1]]) <- tb_names
