@@ -66,6 +66,9 @@ map(x, pluck, 2)')
 annotate_fun_calls(testcode)
 ```
 
+## A note on the `tidyverse`
+The `tidyverse` package is a meta-package with few exported functions of its own, so the annotation tools provided here (`annotate_fun_calls`) will not match the functions from the various individual packages (such as `dplyr` or `readr`) that get attached when loading `tidyverse`. This is by design, so consider loading individual packages if annotations for function calls are desired.
+
 
 ## Usage in RStudio
 

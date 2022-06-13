@@ -3,12 +3,12 @@
 
 # annotater
 
-<img src='man/figures/logo.png' align="right" height="230" />
+<img src='man/figures/logo.png' align="right" height="210" />
 
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://codecov.io/gh/luisDVA/annotater?branch=master)  
+coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://app.codecov.io/gh/luisDVA/annotater?branch=master)  
 <!-- badges: end -->
 
 The goal of `annotater` is to annotate package load calls in character
@@ -76,6 +76,15 @@ writeLines(annotate_repo_source(test_string))
 
 Entire .R files can also be parsed and annotated with the
 `annotate_script` function.
+
+### A note on the `tidyverse`
+
+The `tidyverse` package is a meta-package with few exported functions of
+its own, so the annotation tools provided here (`annotate_fun_calls`)
+will not match the functions from the various individual packages (such
+as `dplyr` or `readr`) that get attached when loading `tidyverse`. This
+is by design, so consider loading individual packages if annotations for
+function calls are desired.
 
 Feedback welcome
 
