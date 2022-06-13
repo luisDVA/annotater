@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Similar to styler. Provides non-invasive annotation of package load calls such as \code{library} and \code{require} so that we can have an idea of what the packages we're loading are meant for.
+Provides non-invasive annotation of package load calls such as \code{library}, \code{p_load}, and \code{require} so that we can have an idea of what the packages we are loading are meant for.
 }
 \seealso{
 Useful links:
