@@ -1,5 +1,9 @@
 # annotater 0.2.1
 
+* Additional unit tests
+* Preparation for CRAN submission
+* Metapackage disclaimer in documentation
+
 # annotater 0.2.0
 
 * Adds support for packages loaded with the `pacman` package  
