@@ -90,7 +90,7 @@ annotate_repostitle <- function(string_og) {
       replacement = pacld$annotpac, vectorize_all = FALSE
     )
     pck_descs <- pck_descs[!stringr::str_detect(out_tb$call, ".+load\\("), ]
-    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, pck_descs$annotation, " v", pck_descs$version)
+    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, " ", pck_descs$annotation, " v", pck_descs$version)
 
     return(
       stringi::stri_replace_all_fixed(

@@ -36,3 +36,8 @@ test_that("quoted packaged names stripped for matching", {
   )
   expect_identical(matched, manual_pkg_table)
 })
+
+test_that("line breaks in pacman calls trigger message", {
+  test_string <- c("p_load(\nboot,unheadr)")
+  expect_message(match_pkg_names(test_string))
+})

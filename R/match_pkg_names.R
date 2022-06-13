@@ -20,8 +20,8 @@ match_pkg_names <- function(string_og) {
   colnames(req_matches[[1]]) <- tb_names
   req_tb <- tibble::as_tibble(req_matches[[1]])
   # warn if there are line breaks in p_load calls
-  if (stringr::str_detect(string_og, stringr::regex("^p_load\\(.*\n",
-    multiline = TRUE
+  if (stringr::str_detect(string_og, stringr::regex("^\\s*p_load\\(\n.*\\)|^\\s*p_load\\(.*\n\\)",
+                                                    multiline = TRUE
   ))) {
     message("Remove line breaks from 'pacman' package calls to avoid missing annotations.")
   }
