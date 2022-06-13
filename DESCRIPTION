@@ -21,7 +21,6 @@ Imports:
     dplyr,
     stringi,
     readr,
-    clipr,
     rstudioapi,
     tidyr,
     rlang

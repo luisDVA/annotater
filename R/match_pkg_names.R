@@ -7,6 +7,8 @@
 #' @examples
 #' test_string <- c("library(boot)\nrequire(Matrix)")
 #' match_pkg_names(test_string)
+#' @importFrom rlang .data
+#'
 #' @export
 match_pkg_names <- function(string_og) {
   if (!is.character(string_og)) stop("input must be a character string")
@@ -34,9 +36,9 @@ match_pkg_names <- function(string_og) {
   colnames(pac_matches[[1]]) <- tb_names
   colnames(pacns_matches[[1]]) <- tb_names
   pac_tb <- tibble::as_tibble(pac_matches[[1]])
-  pac_tb_long <- tidyr::separate_rows(pac_tb, package_name)
+  pac_tb_long <- tidyr::separate_rows(pac_tb, .data$package_name)
   pacns_tb <- tibble::as_tibble(pacns_matches[[1]])
-  pacns_tb_long <- tidyr::separate_rows(pacns_tb, package_name)
+  pacns_tb_long <- tidyr::separate_rows(pacns_tb, .data$package_name)
   libreqpacout <- dplyr::bind_rows(lib_tb, req_tb, pac_tb_long, pacns_tb_long)
-  dplyr::mutate(libreqpacout, pkgname_clean = stringr::str_remove_all(package_name, "\"|'"))
+  dplyr::mutate(libreqpacout, pkgname_clean = stringr::str_remove_all(.data$package_name, "\"|'"))
 }

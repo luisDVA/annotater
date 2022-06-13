@@ -15,6 +15,7 @@
 #' @importFrom purrr map
 #' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tibble rowid_to_column
+#' @importFrom rlang .data
 #'
 #' @export
 #'
@@ -32,7 +33,7 @@ annotate_fun_calls <- function(string_og) {
   if (all(!grepl("p_load", out_tb$call))) { # no pacman calls
     # Removing quotes from package loading name!
     out_tb$annotation <- unlist(purrr::map(out_tb$pkgname_clean, ~ {
-      pkg_funs <- '"Package currently not installed"' # default annotation
+      pkg_funs <- 'not installed on this machine' # default annotation
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -42,7 +43,7 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         # notify which packages do not have functions being used.
-        pkg_funs <- '"No used functions found"'
+        pkg_funs <- 'No used functions found'
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
@@ -62,9 +63,9 @@ annotate_fun_calls <- function(string_og) {
   if (all(grepl("p_load", out_tb$call))) { # only pacman calls
     pacld <- out_tb[stringr::str_detect(out_tb$call, ".+load\\("), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ",")
-    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", pkgnamesep), pkgnamesep))
+    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotation <- unlist(purrr::map(gsub("\"|'", "", pacld$package_name), ~ {
-      pkg_funs <- '"Package currently not installed"' # default annotation.
+      pkg_funs <- 'not installed on this machine' # default annotation.
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -74,15 +75,15 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         #  notify which packages do not have functions being used.
-        pkg_funs <- '"No used functions found"'
+        pkg_funs <- 'No used functions found'
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
     pacld$annotated <- paste0(pacld$call, " # ", pacld$annotation)
     pacld$annotatedpac <- paste(pacld$pkgnamesep, "#", pacld$annotation)
-    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(annotatedpac, collapse = "\n"))
+    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(.data$annotatedpac, collapse = "\n"))
     pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
-    pacld <- dplyr::mutate(pacld, annotpac = paste(ldcalls, pkgs, ")", sep = "\n"))
+    pacld <- dplyr::mutate(pacld, annotpac = paste(.data$ldcalls, .data$pkgs, ")", sep = "\n"))
     return(
       align_annotations(stringi::stri_replace_all_fixed(
         str = string_og, pattern = pacld$call,
@@ -94,9 +95,9 @@ annotate_fun_calls <- function(string_og) {
   if (any(grepl("p_load", out_tb$call)) & any(grepl("libr|req", out_tb$call))) { # pacman and base calls
     pacld <- out_tb[stringr::str_detect(out_tb$call, ".+load\\("), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ",")
-    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", pkgnamesep), pkgnamesep))
+    pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotation <- unlist(purrr::map(gsub("\"|'", "", pacld$package_name), ~ {
-      pkg_funs <- '"Package currently not installed"' # default annotation.
+      pkg_funs <- 'not installed on this machine' # default annotation.
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -106,22 +107,22 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         #  notify which packages do not have functions being used.
-        pkg_funs <- '"No used functions found"'
+        pkg_funs <- 'No used functions found'
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
     pacld$annotated <- paste0(pacld$call, " # ", pacld$annotation)
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, " # ", pacld$annotation)
-    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(annotatedpac, collapse = "\n"))
+    pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(.data$annotatedpac, collapse = "\n"))
     pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
-    pacld <- dplyr::mutate(pacld, annotpac = paste(ldcalls, pkgs, ")", sep = "\n"))
+    pacld <- dplyr::mutate(pacld, annotpac = paste(.data$ldcalls, .data$pkgs, ")", sep = "\n"))
     string_og <- stringi::stri_replace_all_fixed(
       str = string_og, pattern = pacld$call,
       replacement = pacld$annotpac, vectorize_all = FALSE
     )
     out_tb <- out_tb[!stringr::str_detect(out_tb$call, ".+load\\("), ]
     out_tb$annotation <- unlist(purrr::map(gsub("\"|'", "", out_tb$package_name), ~ {
-      pkg_funs <- '"Package currently not installed"' # default annotation.
+      pkg_funs <- 'not installed on this machine' # default annotation.
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -131,7 +132,7 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         #  notify which packages do not have functions being used.
-        pkg_funs <- '"No used functions found"'
+        pkg_funs <- 'No used functions found'
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))

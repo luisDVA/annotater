@@ -10,18 +10,18 @@ test_that("no library call", {
 })
 
 test_that("library call but no funs", {
-  test_string <- "library(ggplot2)"
-  expect_equal(
+  test_string <- "library(purrr)"
+  expect_identical(
     annotate_fun_calls(test_string),
-    paste0(test_string, ' # "No used functions found"')
+    paste0(test_string, " # No used functions found")
   )
 })
 
 test_that("require call but no funs", {
-  test_string <- "require(ggplot2)"
+  test_string <- "require(purrr)"
   expect_equal(
     annotate_fun_calls(test_string),
-    paste0(test_string, ' # "No used functions found"')
+    paste0(test_string, ' # No used functions found')
   )
 })
 
@@ -101,5 +101,5 @@ test_that("mixed base and pacman calls call but no funs", {
   test_string <- "pacman::p_load(purrr)\nlibrary(stringr)"
   expect_equal(
     annotate_fun_calls(test_string),
-    "pacman::p_load(\npurrr # \"No used functions found\"\n)\nlibrary(stringr) # \"No used functions found\""  )
+    "pacman::p_load(\npurrr # No used functions found\n)\nlibrary(stringr) # No used functions found")
 })
