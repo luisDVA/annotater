@@ -14,6 +14,7 @@ Provides non-invasive annotation of package load calls such as \code{library}, \
 Useful links:
 \itemize{
   \item \url{https://github.com/luisDVA/annotater}
+  \item \url{https://annotater.liomys.mx}
   \item Report bugs at \url{https://github.com/luisDVA/annotater/issues}
 }
 

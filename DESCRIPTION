@@ -24,7 +24,7 @@ Imports:
     rstudioapi,
     tidyr,
     rlang
-URL: https://github.com/luisDVA/annotater
+URL: https://github.com/luisDVA/annotater, https://annotater.liomys.mx
 BugReports: https://github.com/luisDVA/annotater/issues
 Suggests: 
     testthat,
