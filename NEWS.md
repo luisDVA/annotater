@@ -1,3 +1,5 @@
+# annotater 0.2.1
+
 # annotater 0.2.0
 
 * Adds support for packages loaded with the `pacman` package  
