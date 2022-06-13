@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">annotater</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -95,12 +95,24 @@
 
     
     
-<p><code>annotater</code> came about after teaching workshops or helping peers and realizing that many issues relate to package installation failures and dependency issues for packages that were not even used in a problematic script. Scripts get passed around, code is copied and pasted, and we might not know what certain packages are for. Additionally, it is often useful to specify a package’s source and version within a script, for reproducibility purposes and to keep a record of where any the packages can be obtained.</p>
+<p><code>annotater</code> came about after teaching workshops or helping
+peers and realizing that many issues relate to package installation
+failures and dependency issues for packages that were not even used in a
+problematic script. Scripts get passed around, code is copied and
+pasted, and we might not know what certain packages are for.
+Additionally, it is often useful to specify a package’s source and
+version within a script, for reproducibility purposes and to keep a
+record of where any the packages can be obtained.</p>
 <div class="section level2">
 <h2 id="package-functions">Package functions<a class="anchor" aria-label="anchor" href="#package-functions"></a>
 </h2>
-<p>This package works around a suite of functions that match package load calls (i.e. <code>library</code> and <code>require</code>) in a character string with one line per element, and replace them with annotated versions. As of version 0.2.0, loading packages with <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">pacman::p_load</a></code> is also supported.</p>
-<p>First, <code>match_pkg_names</code> produces a tibble of package load calls and package names.</p>
+<p>This package works around a suite of functions that match package
+load calls (i.e. <code>library</code> and <code>require</code>) in a
+character string with one line per element, and replace them with
+annotated versions. As of version 0.2.0, loading packages with
+<code><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">pacman::p_load</a></code> is also supported.</p>
+<p>First, <code>match_pkg_names</code> produces a tibble of package load
+calls and package names.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(Matrix)"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/match_pkg_names.html">match_pkg_names</a></span><span class="op">(</span><span class="va">pkgs_string</span><span class="op">)</span>
@@ -109,23 +121,32 @@
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> library(boot)   boot         boot         </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> require(Matrix) Matrix       Matrix</span></code></pre></div>
-<p>The values in this tabular output are then passed to <code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">utils::packageDescription</a></code>, which parses and returns the ‘DESCRIPTION’ file of an installed package. Fields of interest from these descriptions are then used to build the annotations.</p>
-<p>The ‘Title’ field from a package’s description makes for a good summary of what it does, so <code>annotate_pkg_calls</code> uses it to build annotations. These titles are inserted after each package load call, separated by a commenting symbol.</p>
+<p>The values in this tabular output are then passed to
+<code><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">utils::packageDescription</a></code>, which parses and returns the
+‘DESCRIPTION’ file of an installed package. Fields of interest from
+these descriptions are then used to build the annotations.</p>
+<p>The ‘Title’ field from a package’s description makes for a good
+summary of what it does, so <code>annotate_pkg_calls</code> uses it to
+build annotations. These titles are inserted after each package load
+call, separated by a commenting symbol.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(tools)"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/annotate_pkg_calls.html">annotate_pkg_calls</a></span><span class="op">(</span><span class="va">pkgs_string</span><span class="op">)</span>
 <span class="co">#&gt; [1] "library(boot) # Bootstrap Functions (Originally by Angelo Canty for S)\nrequire(tools) # Tools for Package Development"</span></code></pre></div>
-<p>A similar approach is used by <code>annotate_repo_source</code> to paste the repository source and version number.</p>
+<p>A similar approach is used by <code>annotate_repo_source</code> to
+paste the repository source and version number.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(lattice)"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/annotate_repo_source.html">annotate_repo_source</a></span><span class="op">(</span><span class="va">pkgs_string</span><span class="op">)</span>
 <span class="co">#&gt; [1] "library(boot)    # CRAN v1.3-28\nrequire(lattice) # CRAN v0.20-45"</span></code></pre></div>
-<p>Titles, repositories and version numbers can be annotated together in the output from <code>annotate_repostitle</code>.</p>
+<p>Titles, repositories and version numbers can be annotated together in
+the output from <code>annotate_repostitle</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(lattice)"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/annotate_repostitle.html">annotate_repostitle</a></span><span class="op">(</span><span class="va">pkgs_string</span><span class="op">)</span>
 <span class="co">#&gt; [1] "boot # Bootstrap Functions (Originally by Angelo Canty for S), CRAN v1.3-28\nlattice # Trellis Graphics for R, CRAN v0.20-45"</span></code></pre></div>
-<p>To annotate which functions are being called from each loaded package, use <code>annotate_fun_calls</code>.</p>
+<p>To annotate which functions are being called from each loaded
+package, use <code>annotate_fun_calls</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">testcode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'library(purrr) 
 x &lt;- list("a", 1, c("bo","bi","bu"))
@@ -135,28 +156,46 @@ map(x, pluck, 2)'</span><span class="op">)</span>
 <span class="co">#&gt; [1] "library(purrr) # pluck map \nx &lt;- list(\"a\", 1, c(\"bo\",\"bi\",\"bu\"))\npluck(x, 1)\nmap(x, pluck, 2)"</span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="a-note-on-the-tidyverse">A note on the <code>tidyverse</code><a class="anchor" aria-label="anchor" href="#a-note-on-the-tidyverse"></a>
+</h2>
+<p>The <code>tidyverse</code> package is a meta-package with few
+exported functions of its own, so the annotation tools provided here
+(<code>annotate_fun_calls</code>) will not match the functions from the
+various individual packages (such as <code>dplyr</code> or
+<code>readr</code>) that get attached when loading
+<code>tidyverse</code>. This is by design, so consider loading
+individual packages if annotations for function calls are desired.</p>
+</div>
+<div class="section level2">
 <h2 id="usage-in-rstudio">Usage in RStudio<a class="anchor" aria-label="anchor" href="#usage-in-rstudio"></a>
 </h2>
-<p>These main package functions can be called through their respective RStudio addins, written to work on the active .R or .Rmd file open in the Source pane.</p>
+<p>These main package functions can be called through their respective
+RStudio addins, written to work on the active .R or .Rmd file open in
+the Source pane.</p>
 <div class="section level4">
 <h4 id="annotate-package-calls-in-active-file">Annotate package calls in active file<a class="anchor" aria-label="anchor" href="#annotate-package-calls-in-active-file"></a>
 </h4>
-<p>Describes the packages being loaded by calling <code>annotate_pkg_calls</code>.</p>
+<p>Describes the packages being loaded by calling
+<code>annotate_pkg_calls</code>.</p>
 </div>
 <div class="section level4">
 <h4 id="annotate-package-repository-sources-in-active-file">Annotate package repository sources in active file<a class="anchor" aria-label="anchor" href="#annotate-package-repository-sources-in-active-file"></a>
 </h4>
-<p>Adds the source and version by calling <code>annotate_repo_source</code>. This addin aligns the commenting symbols vertically for aesthetic purposes.</p>
+<p>Adds the source and version by calling
+<code>annotate_repo_source</code>. This addin aligns the commenting
+symbols vertically for aesthetic purposes.</p>
 </div>
 <div class="section level4">
 <h4 id="annotate-titles-and-repository-sources-in-active-file">Annotate titles and repository sources in active file<a class="anchor" aria-label="anchor" href="#annotate-titles-and-repository-sources-in-active-file"></a>
 </h4>
-<p>Adds titles, sources, and versions by calling <code>annotate_repostitles</code>.</p>
+<p>Adds titles, sources, and versions by calling
+<code>annotate_repostitles</code>.</p>
 </div>
 <div class="section level4">
 <h4 id="annotate-each-packages-function-calls">Annotate each package’s function calls<a class="anchor" aria-label="anchor" href="#annotate-each-packages-function-calls"></a>
 </h4>
-<p>Adds all the unique functions being called by each loaded package, calls <code>annotate_fun_calls</code>.</p>
+<p>Adds all the unique functions being called by each loaded package,
+calls <code>annotate_fun_calls</code>.</p>
 </div>
 </div>
   </div>
@@ -178,7 +217,7 @@ map(x, pluck, 2)'</span><span class="op">)</span>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer>
