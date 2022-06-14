@@ -5,6 +5,7 @@
 #'
 #' @importFrom rstudioapi getActiveDocumentContext modifyRange
 #' @importFrom stringi stri_split_lines1
+#' @return No return value, wraps [annotate_fun_calls()] for access via Addin
 #'
 #' @export
 #'

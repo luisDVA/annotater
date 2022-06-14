@@ -3,6 +3,8 @@
 #' Annotates package load calls with package titles and repository details in
 #' the active .R file
 #'
+#' @return No return value, wraps [annotate_repostitle()] for access via Addin
+#'
 #' @export
 annotate_repostitle_active <- function() {
   context <- rstudioapi::getActiveDocumentContext()

@@ -1,3 +1,15 @@
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+- added missing '()' after function names in the description text (DESCRIPTION file)
+
+- added \value to .Rd files to describe output from wrapper functions for the following files with missing tags:
+   * annotate_active_file.Rd
+   * annotate_fun_calls_active_file.Rd
+   * annotate_repos_active_file.Rd
+   * annotate_repostitle_active.Rd
+
 ## Test Environments
 R-hub Windows Server 2022, R-devel, 64 bit
 R-hub Ubuntu Linux 20.04.1 LTS, R-release, GCC
@@ -9,5 +21,4 @@ New submission
 ## R CMD check results
 0 errors | 0 warnings | 0 notes
 
-* This is a new release.
 * There are currently no downstream dependencies for this package.

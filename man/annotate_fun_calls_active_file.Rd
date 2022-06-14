@@ -6,6 +6,9 @@
 \usage{
 annotate_fun_calls_active_file()
 }
+\value{
+No return value, wraps [annotate_fun_calls()] for access via Addin
+}
 \description{
 Annotates package load calls with the used functions of each package in the
 active .R file

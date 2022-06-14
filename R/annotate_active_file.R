@@ -1,6 +1,7 @@
 #' Annotate Active File
 #'
 #' Annotates package load calls in the active .R file
+#' @return No return value, wraps [annotate_pkg_calls()] for access via Addin
 #'
 #' @export
 annotate_active_file <- function() {

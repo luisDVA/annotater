@@ -2,6 +2,8 @@
 #'
 #' Annotates package load calls with repository details in the active .R file
 #'
+#' @return No return value, wraps [annotate_repo_source()] for access via Addin
+#'
 #' @export
 annotate_repos_active_file <- function() {
   context <- rstudioapi::getActiveDocumentContext()

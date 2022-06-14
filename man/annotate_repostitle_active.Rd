@@ -6,6 +6,9 @@
 \usage{
 annotate_repostitle_active()
 }
+\value{
+No return value, wraps [annotate_repostitle()] for access via Addin
+}
 \description{
 Annotates package load calls with package titles and repository details in
 the active .R file

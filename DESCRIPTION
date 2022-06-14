@@ -8,7 +8,7 @@ Authors@R:
            email = "luis@liomys.mx",
            comment = c(ORCID = "0000-0001-9520-6543"))
 Description: Provides non-invasive annotation of package load calls 
-    such as \code{library}, \code{p_load}, and \code{require} so that we can have an idea of what 
+    such as \code{library()}, \code{p_load()}, and \code{require()} so that we can have an idea of what 
     the packages we are loading are meant for.
 License: MIT + file LICENSE
 Encoding: UTF-8

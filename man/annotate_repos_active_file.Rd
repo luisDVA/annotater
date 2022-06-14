@@ -6,6 +6,9 @@
 \usage{
 annotate_repos_active_file()
 }
+\value{
+No return value, wraps [annotate_repo_source()] for access via Addin
+}
 \description{
 Annotates package load calls with repository details in the active .R file
 }
