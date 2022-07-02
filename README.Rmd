@@ -16,7 +16,10 @@ knitr::opts_chunk$set(
 <img src='man/figures/logo.png' align="right" height="210" />
   
 <!-- badges: start -->
-[![Codecov test coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://app.codecov.io/gh/luisDVA/annotater?branch=master)    
+[![CRAN status](https://www.r-pkg.org/badges/version/annotater)](https://CRAN.R-project.org/package=annotater)
+[![Codecov test coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://app.codecov.io/gh/luisDVA/annotater?branch=master)
+[![](http://cranlogs.r-pkg.org/badges/last-month/annotater?color=orange)](https://cran.r-project.org/package=annotater)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/annotater?color=blue)](https://cran.r-project.org/package=annotater)
 <!-- badges: end -->  
 
 
@@ -53,12 +56,15 @@ Users of the [`pacman`](https://cran.r-project.org/package=pacman) package can n
 
 ## Installation
 
-Install the development version of `annotater` from GitHub with:
+Install the CRAN release or the development version with:
 
 ``` r
+# Install annotater from CRAN:
+install.packages("annotater")
 # install.packages("remotes")
 remotes::install_github("luisDVA/annotater")
 ```
+
 Restart RStudio after the installation for the addins to load properly.
 
 ### When using the addins, make sure the focus (blinking cursor) is on an open RStudio R file in the 'source' pane.

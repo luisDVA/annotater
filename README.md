@@ -7,8 +7,12 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/annotater)](https://CRAN.R-project.org/package=annotater)
 [![Codecov test
-coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://app.codecov.io/gh/luisDVA/annotater?branch=master)  
+coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)](https://app.codecov.io/gh/luisDVA/annotater?branch=master)
+[![](http://cranlogs.r-pkg.org/badges/last-month/annotater?color=orange)](https://cran.r-project.org/package=annotater)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/annotater?color=blue)](https://cran.r-project.org/package=annotater)
 <!-- badges: end -->
 
 The goal of `annotater` is to annotate package load calls in character
@@ -49,9 +53,11 @@ readability.
 
 ## Installation
 
-Install the development version of `annotater` from GitHub with:
+Install the CRAN release or the development version with:
 
 ``` r
+# Install annotater from CRAN:
+install.packages("annotater")
 # install.packages("remotes")
 remotes::install_github("luisDVA/annotater")
 ```
