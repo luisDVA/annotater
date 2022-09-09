@@ -1,6 +1,6 @@
 Package: annotater
 Title: Annotate Package Load Calls
-Version: 0.2.1
+Version: 0.2.1.9000
 Authors@R: 
     person(given = "Luis D.",
            family = "Verde Arregoitia",
