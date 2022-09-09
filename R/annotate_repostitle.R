@@ -51,7 +51,7 @@ annotate_repostitle <- function(string_og) {
 
   # build annotations
   if (all(!grepl("p_load", pck_descs$call))) { # no pacman calls
-    pck_descs$annotated <- paste0(pck_descs$package_name, " # ", pck_descs$title, ", ", pck_descs$annotation, " v", pck_descs$version)
+    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, ", ", pck_descs$annotation, " v", pck_descs$version)
 
     return(
       align_annotations(stringi::stri_replace_all_fixed(

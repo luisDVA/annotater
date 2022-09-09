@@ -8,7 +8,7 @@
 #' @return A character vector with vertically aligned package calls.
 #'
 align_annotations <- function(annot_string,
-                              regex_ai = "(?!\\))(?!\\s)(?=\\#\\sCR|\\#\\sBio|\\#\\snot i|\\#\\s\\[)", sep_str = "") {
+                              regex_ai = "(?!\\))(?!\\s)(?=\\#\\sCRAN\\sv\\s|\\#\\sBioconductor\\s|\\#\\snot installed on|\\#\\s\\[)", sep_str = "") {
   if (!is.character(annot_string)) {
     stop("input 'stringvec' must be a character vector")
   }
