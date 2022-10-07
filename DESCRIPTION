@@ -13,7 +13,7 @@ Description: Provides non-invasive annotation of package load calls
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Imports: 
     stringr,
     purrr,
@@ -23,7 +23,7 @@ Imports:
     readr,
     rstudioapi,
     tidyr,
-    rlang
+    rlang,
 URL: https://github.com/luisDVA/annotater, https://annotater.liomys.mx
 BugReports: https://github.com/luisDVA/annotater/issues
 Suggests: 

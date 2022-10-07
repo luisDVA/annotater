@@ -8,22 +8,22 @@ test_that("lines as is when there are no matches", {
 })
 
 test_that("repo details returns a user/repository-name vector", {
-  expect_match(repo_details("boot"), ".*\\/.*")
+  expect_match(repo_details("stringr"), ".*\\/.*")
 })
 
 test_that("repository sources returns a repository-version combination", {
-  test_string <- c("library(boot)")
+  test_string <- c("library(generics)")
   expect_match(
     annotate_repo_source(test_string),
-    "library\\(boot\\) # CRAN v.*"
+    "library\\(generics\\) # CRAN v.*"
   )
 })
 
 test_that("repository sources returns a repository-version combination (p_load)", {
-  test_string <- c("p_load(boot)")
+  test_string <- c("p_load(generics)")
   expect_match(
     annotate_repo_source(test_string),
-    "p_load\\(\nboot # CRAN v.*\\)"
+    "p_load\\(\ngenerics # CRAN v.*\\)"
   )
 })
 
@@ -32,7 +32,7 @@ test_that("input for alignment function is a character string", {
 })
 
 test_that("repository title and sources includes a repository-version combination", {
-  test_string <- c("library(boot)")
+  test_string <- c("library(generics)")
   expect_match(
     annotate_repostitle(test_string),
     "CRAN v.*"
@@ -41,18 +41,18 @@ test_that("repository title and sources includes a repository-version combinatio
 
 test_that("repository sources returns a repository-version combination (p_load and library)", {
   test_string <- c(
-    "p_load(devtools)
+    "p_load(tidyr)
 library(stringi)"
   )
   expect_match(
     annotate_repo_source(test_string),
-    "p_load.*devtools\\s*# CRAN v.*library.stringi.*CRAN v.*"
+    "p_load.*tidyr\\s*# CRAN v.*library.stringi.*CRAN v.*"
   )
 })
 
 test_that("package function annotations when none used ", {
-  test_string <- c("library(purrr)\nread_delim('dat')")
-  test_string_p <- c("p_load(purrr)\nread_delim('dat')")
+  test_string <- c("library(generics)\nread_delim('dat')")
+  test_string_p <- c("p_load(generics)\nread_delim('dat')")
   expect_match(
     annotate_fun_calls(test_string),
     "No used functions found"
@@ -64,15 +64,15 @@ test_that("package function annotations when none used ", {
 })
 
 test_that("if statement for pacman calls works", {
-  test_string <- c("p_load(boot)")
+  test_string <- c("p_load(generics)")
   expect_match(
     annotate_repostitle(test_string),
-    "# Bootstrap Functions"
+    "# Common "
   )
 })
 
 test_that("if statement for pacman + base calls works", {
-   test_string <- c("p_load(boot)\nlibrary(purrr)")
-expect_match(annotate_repostitle(test_string),"# Bootstrap")
-expect_match(annotate_repostitle(test_string),"# Functional")
+   test_string <- c("p_load(generics)\nlibrary(tidyr)")
+expect_match(annotate_repostitle(test_string),"# Common")
+expect_match(annotate_repostitle(test_string),"# Tidy")
  })

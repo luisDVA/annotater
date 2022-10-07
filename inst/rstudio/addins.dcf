@@ -17,3 +17,8 @@ Name: Annotate each package's function calls
 Description: Adds used functions
 Binding: annotate_fun_calls_active_file
 Interactive: false
+
+Name: Expand metapackages
+Description: Expand into separate load calls
+Binding: expand_metapackages_active_file
+Interactive: false
