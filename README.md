@@ -94,9 +94,9 @@ annotations for function calls are desired.
 
 ### More on metapackages
 
-`annotater` can now (v0.2.1.9000) expand metapackage load calls into
-separate `library` calls for the individual packages that form the core
-of `tidyverse`, `tidymodels`, and `easystats`.
+`annotater` can now expand metapackage load calls into separate
+`library` calls for the individual packages that form the core of
+`tidyverse`, `tidymodels`, and `easystats`.
 
 Feedback welcome
 

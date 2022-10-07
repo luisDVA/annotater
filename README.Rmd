@@ -88,7 +88,7 @@ Entire .R files can also be parsed and annotated with the `annotate_script` func
 The `tidyverse` package is a meta-package with few exported functions of its own, so the annotation tools provided here (`annotate_fun_calls`) will not match the functions from the various individual packages (such as `dplyr` or `readr`) that get attached when loading `tidyverse`. Consider using the experimental `expand_metapackages` function first if annotations for function calls are desired.
  
 ### More on metapackages
-`annotater` can now (v0.2.1.9000) expand metapackage load calls into separate `library` calls for the individual packages that form the core of `tidyverse`, `tidymodels`, and `easystats`.
+`annotater` can now expand metapackage load calls into separate `library` calls for the individual packages that form the core of `tidyverse`, `tidymodels`, and `easystats`.
 
  
 Feedback welcome
