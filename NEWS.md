@@ -1,5 +1,8 @@
 # annotater 0.2.2
+
 * Bug fixes
+* Add function to expand metapackages
+* Fix failing test affecting purrr
 
 # annotater 0.2.1
 
