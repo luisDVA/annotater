@@ -1,4 +1,4 @@
-# annotater (development version)
+# annotater 0.2.2
 * Bug fixes
 
 # annotater 0.2.1
