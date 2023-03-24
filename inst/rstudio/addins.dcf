@@ -22,3 +22,8 @@ Name: Expand metapackages
 Description: Expand into separate load calls
 Binding: expand_metapackages_active_file
 Interactive: false
+
+Name: Annotate loaded datasets
+Description: Adds loaded data
+Binding: annotate_pkg_datasets_active
+Interactive: false
