@@ -1,4 +1,4 @@
-#' Annotate Package Titles and Repository Sources
+#' Annotate package titles and repository sources
 #'
 #' @param string_og Text string (script) with package load calls.
 #'
@@ -65,7 +65,7 @@ annotate_repostitle <- function(string_og) {
     pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
-    pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, pacld$annotation, " v", pacld$version)
+    pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, " ", pacld$annotation, " v", pacld$version)
     pacld <- dplyr::summarize(dplyr::group_by(pacld, call), pkgs = paste(.data$annotatedpac, collapse = "\n"))
     pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
     pacld <- dplyr::mutate(pacld, annotpac = paste(.data$ldcalls, .data$pkgs, ")", sep = "\n "))

@@ -1,4 +1,4 @@
-#' Retrieve Package Version
+#' Retrieve Package version
 #'
 #' Internal helper function.
 #' @param pkgs_col Package name.

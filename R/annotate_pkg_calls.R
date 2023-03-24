@@ -1,4 +1,4 @@
-#' Annotate Package Calls
+#' Annotate package calls
 #'
 #' @param string_og Text string (script) with package load calls.
 #' @param pkg_field Field from package description to retrieve, defaults to

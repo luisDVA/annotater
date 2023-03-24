@@ -1,4 +1,4 @@
-#' Match Package Names
+#' Match package names
 #'
 #' @param string_og Text string (script) with package load calls.
 #'

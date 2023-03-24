@@ -1,4 +1,4 @@
-#' Retrieve Repo Details
+#' Retrieve repo details
 #'
 #' Internal helper function.
 #' @param pkgs_col Name of variable with the non-CRAN repos.

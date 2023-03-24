@@ -1,4 +1,4 @@
-#' Annotate Function Calls
+#' Annotate function calls
 #'
 #' @param string_og text string (script) with package load calls
 #'

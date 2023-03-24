@@ -1,4 +1,4 @@
-#' Annotate Function Calls in Active File
+#' Annotate function calls in active file
 #'
 #' Annotates package load calls with the used functions of each package in the
 #' active .R file

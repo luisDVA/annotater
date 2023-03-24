@@ -1,4 +1,4 @@
-#' Expand metapackages in Active File
+#' Expand metapackages in active file
 #'
 #' Replaces metapackage load calls in the active .R file with multiple separate
 #' calls to its core packages.

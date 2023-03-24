@@ -1,4 +1,4 @@
-#' Annotate Repositories in Active File
+#' Annotate repositories in active file
 #'
 #' Annotates package load calls with repository details in the active .R file
 #'

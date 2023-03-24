@@ -9,7 +9,8 @@
 #'   installed.
 #'
 #' @examples
-#' test_string <- c("library()\nlibrary(tidyverse)")
+#' test_string <- c("library(tidyverse)")
+#' expand_metapackages(test_string)
 #'
 #' @importFrom stringr str_detect
 #' @importFrom rlang .data

@@ -1,4 +1,4 @@
-#' Annotate Repository Sources
+#' Annotate repository sources
 #'
 #' @param string_og text string (script) with package load calls
 #'
