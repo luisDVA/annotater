@@ -2,7 +2,7 @@
 % Please edit documentation in R/repo_details.R
 \name{repo_details}
 \alias{repo_details}
-\title{Retrieve Repo Details}
+\title{Retrieve repo details}
 \usage{
 repo_details(pkgs_col)
 }

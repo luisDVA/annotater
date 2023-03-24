@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_fun_calls.R
 \name{annotate_fun_calls}
 \alias{annotate_fun_calls}
-\title{Annotate Function Calls}
+\title{Annotate function calls}
 \usage{
 annotate_fun_calls(string_og)
 }
@@ -16,7 +16,7 @@ text string with function call annotations. Will make note of
   names.
 }
 \description{
-Annotate Function Calls
+Annotate function calls
 }
 \examples{
 test_string <- c("library(boot)\nrequire(lattice)\ncanonical.theme()")

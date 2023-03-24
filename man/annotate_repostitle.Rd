@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_repostitle.R
 \name{annotate_repostitle}
 \alias{annotate_repostitle}
-\title{Annotate Package Titles and Repository Sources}
+\title{Annotate package titles and repository sources}
 \usage{
 annotate_repostitle(string_og)
 }
@@ -16,7 +16,7 @@ Text string with package titles and package repository source
   matches package names. Also ignores base packages.
 }
 \description{
-Annotate Package Titles and Repository Sources
+Annotate package titles and repository sources
 }
 \details{
 Some annotations may be long, check for possible line breaks

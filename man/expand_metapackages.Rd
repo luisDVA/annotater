@@ -20,6 +20,7 @@ Text string with metapackage load calls replaced by multiple separate
 Expand metapackages
 }
 \examples{
-test_string <- c("library()\nlibrary(tidyverse)")
+test_string <- c("library(tidyverse)")
+expand_metapackages(test_string)
 
 }

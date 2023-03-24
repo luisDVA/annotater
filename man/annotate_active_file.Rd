@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_active_file.R
 \name{annotate_active_file}
 \alias{annotate_active_file}
-\title{Annotate Active File}
+\title{Annotate active file}
 \usage{
 annotate_active_file()
 }

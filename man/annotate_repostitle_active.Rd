@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_repostitle_active.R
 \name{annotate_repostitle_active}
 \alias{annotate_repostitle_active}
-\title{Annotate Titles and Repositories in Active File}
+\title{Annotate titles and repositories in active file}
 \usage{
 annotate_repostitle_active()
 }

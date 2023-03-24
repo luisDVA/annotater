@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_fun_calls_active_file.R
 \name{annotate_fun_calls_active_file}
 \alias{annotate_fun_calls_active_file}
-\title{Annotate Function Calls in Active File}
+\title{Annotate function calls in active file}
 \usage{
 annotate_fun_calls_active_file()
 }

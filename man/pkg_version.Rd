@@ -2,7 +2,7 @@
 % Please edit documentation in R/pkg_version.R
 \name{pkg_version}
 \alias{pkg_version}
-\title{Retrieve Package Version}
+\title{Retrieve Package version}
 \usage{
 pkg_version(pkgs_col)
 }

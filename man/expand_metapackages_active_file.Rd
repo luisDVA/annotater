@@ -2,7 +2,7 @@
 % Please edit documentation in R/expand_metapackages_active.R
 \name{expand_metapackages_active_file}
 \alias{expand_metapackages_active_file}
-\title{Expand metapackages in Active File}
+\title{Expand metapackages in active file}
 \usage{
 expand_metapackages_active_file()
 }

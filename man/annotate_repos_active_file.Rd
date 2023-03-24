@@ -2,7 +2,7 @@
 % Please edit documentation in R/annotate_repos_active_file.R
 \name{annotate_repos_active_file}
 \alias{annotate_repos_active_file}
-\title{Annotate Repositories in Active File}
+\title{Annotate repositories in active file}
 \usage{
 annotate_repos_active_file()
 }
