@@ -13,7 +13,7 @@ annotate_repo_source(string_og)
 text string with package repository source annotations. Will make
   note of packages not currently installed. Lines with existing comments or
   annotations are ignored by the regular expression that matches package
-  names. Also ignores base packages.
+  names. Also ignores base packages. Local installs now annotated as such.
 }
 \description{
 Annotate repository sources

@@ -15,7 +15,6 @@ annotate_pkg_calls(string_og, pkg_field = "Title")
 \value{
 Text string with package Title annotations. Will make note of
   packages not currently installed.
-#'
 }
 \description{
 Annotate package calls

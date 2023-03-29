@@ -4,18 +4,14 @@
 \alias{get_pkg_datasets}
 \title{Query data from packages}
 \usage{
-get_pkg_datasets(pkgvec)
+get_pkg_datasets(inst_pkgs)
 }
 \arguments{
-\item{pkgvec}{Vector of package names}
+\item{inst_pkgs}{Vector of package names}
 }
 \value{
 A data frame with all the bundled data from the specified packages.
 }
 \description{
 Query data from packages
-}
-\examples{
-get_pkg_datasets(c("dplyr","stringr"))
-
 }

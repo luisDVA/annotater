@@ -1,11 +1,12 @@
 context("package loading annotations")
 
-test_that("lines as is when there are no matches", {
+test_that("correct text when there are no matches", {
   test_string <- c("cdog\n23")
   expect_output(annotate_pkg_calls(test_string), "no matching library load calls")
   expect_output(annotate_repo_source(test_string), "no matching library load calls")
   expect_output(annotate_repostitle(test_string), "no matching library load calls")
-})
+  expect_output(annotate_pkg_datasets(test_string), "no matching library load calls")
+  })
 
 test_that("repo details returns a user/repository-name vector", {
   expect_match(repo_details("stringr"), ".*\\/.*")
@@ -50,7 +51,7 @@ library(stringi)"
   )
 })
 
-test_that("package function annotations when none used ", {
+test_that("package function annotations when none used", {
   test_string <- c("library(generics)\nread_delim('dat')")
   test_string_p <- c("p_load(generics)\nread_delim('dat')")
   expect_match(
@@ -60,6 +61,15 @@ test_that("package function annotations when none used ", {
   expect_match(
     annotate_fun_calls(test_string_p),
     "No used functions found"
+  )
+})
+
+
+test_that("package dataset annotations when none used", {
+  test_string <- c("library(generics)\nread_delim('dat')")
+  expect_match(
+    annotate_pkg_datasets(test_string),
+    "No loaded datasets found"
   )
 })
 

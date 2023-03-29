@@ -5,7 +5,7 @@
 #' @return text string with package repository source annotations. Will make
 #'   note of packages not currently installed. Lines with existing comments or
 #'   annotations are ignored by the regular expression that matches package
-#'   names. Also ignores base packages.
+#'   names. Also ignores base packages. Local installs now annotated as such.
 #'
 #' @examples
 #' test_string <- c("library(boot)\nrequire(lattice)")
@@ -19,27 +19,44 @@ annotate_repo_source <- function(string_og) {
     return(string_og)
   }
   out_tb <- tibble::rowid_to_column(out_tb)
-  pck_descs <- purrr::map(out_tb$pkgname_clean, utils::packageDescription,
+  pck_descs <- suppressWarnings(purrr::map(out_tb$pkgname_clean,
+                          utils::packageDescription,
                           fields = c("Repository", "RemoteType", "biocViews")
-  )
+  ))
   pck_descs <- purrr::map(pck_descs, as.list)
   pck_descs <- tidyr::unnest(tibble::enframe(purrr::map(pck_descs, purrr::flatten_chr)), cols = c(.data$value))
   pck_descs <- dplyr::rename(pck_descs, rowid = 1, repo = 2)
   pck_descs <- dplyr::left_join(out_tb, pck_descs, by = "rowid")
   pck_descs <- dplyr::mutate(pck_descs, repo = ifelse(stringr::str_detect(.data$repo, ","), "Bioconductor", .data$repo))
   pck_descs <- dplyr::add_count(pck_descs, .data$package_name)
-  pck_descs <- stats::na.omit(dplyr::mutate(pck_descs, repo = dplyr::if_else(.data$n == 1, "none", .data$repo)))
+  pck_descs <- dplyr::mutate(pck_descs, repo = dplyr::if_else(.data$n == 1, "none", .data$repo))
+  pck_descs <-
+    suppressMessages(dplyr::ungroup(dplyr::summarize(
+      dplyr::group_by(pck_descs,call,.data$package_name,.data$pkgname_clean),repo=dplyr::last(stats::na.omit(.data$repo)))))
   pck_descs <- dplyr::mutate(pck_descs, user_repo = dplyr::case_when(
     .data$repo ==
       "CRAN" ~ "CRAN",
+    stringr::str_detect(.data$repo, "r-universe") ~ .data$repo,
     .data$repo == "Bioconductor" ~ "Bioconductor",
     .data$repo == "none" ~ "not installed on this machine",
-    TRUE ~ repo_details(.data$package_name)
+    is.na(.data$repo) ~ "local install",
+    TRUE ~ repo_details(.data$pkgname_clean)
   ), annotation = dplyr::case_when(stringr::str_detect(
     user_repo,
-    "/"
+    "(?<!/)/(?!/)"
   ) ~ paste0("[", .data$repo, "::", user_repo, "]"), TRUE ~ user_repo))
-  pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(.data$package_name))
+  pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(.data$pkgname_clean))
+  # case with a single locally installed package
+  if (nrow(pck_descs) == 0) {
+    locannot <- paste(out_tb$call,"# local install")
+    return(
+      align_annotations(
+        stringi::stri_replace_all_fixed(
+          str = string_og, pattern = out_tb$call,
+          replacement = locannot, vectorize_all = FALSE
+        )
+      ))
+  }
 
   # build annotation
   if (all(!grepl("p_load", pck_descs$call))) { # no pacman calls

@@ -18,6 +18,9 @@ text string with annotations for datasets loaded from packages
 \description{
 Annotate package datasets
 }
+\details{
+No support for \pkg{pacman} package loading at this time.
+}
 \examples{
 test_string <- c("library(tidyr)\nlibrary(purrr)\ndata(construction)\nsummary(fish_encounters)")
 annotate_pkg_datasets(test_string)

@@ -6,7 +6,7 @@
 #'
 #' @return Text string with package Title annotations. Will make note of
 #'   packages not currently installed.
-#' #'
+#'
 #' @examples
 #' test_string <- c("library(boot)\nrequire(tools)")
 #' annotate_pkg_calls(test_string)
