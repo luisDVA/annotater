@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(annotater)
 ```
 
-`annotater` came about after teaching workshops or helping peers and realizing that many issues relate to package installation failures and dependency issues for packages that were not even used in a problematic script. Scripts get passed around, code is copied and pasted, and we might not know what certain packages are for. Additionally, it is often useful to specify a package's source and version within a script, for reproducibility purposes and to keep a record of where any of the packages can be obtained.
+`annotater` came to be while teaching workshops or helping peers and realizing that many issues relate to package installation failures and dependency issues for packages that were not even used in a problematic script. Scripts get passed around, code is copied and pasted, and we might not know what certain packages are for. Additionally, it is often useful to specify a package's source and version within a script, for reproducibility purposes and to keep a record of where any of the packages can be obtained.
 
 
 ## Package functions
@@ -66,6 +66,16 @@ map(x, pluck, 2)')
 annotate_fun_calls(testcode)
 ```
 
+To annotate which datasets are being called from each loaded package, use `annotate_pkg_datasets`.
+
+```{r}
+testcode <- c('library(tidyr) 
+summary(household)
+plot(fish_encounters)')
+annotate_pkg_datasets(testcode)
+```
+
+
 ## A note on the `tidyverse` and other metapackages
 The `tidyverse` package is a meta-package with few exported functions of its own, so the annotation tools provided here (`annotate_fun_calls`) will not match the functions from the various individual packages (such as `dplyr` or `readr`) that get attached when loading `tidyverse`. As of version 0.2.2, load calls for metapackages can be replaced with separate calls to each of the core metapackage components as defined by their respective _attach.R_
 files.
@@ -85,6 +95,9 @@ Adds titles, sources, and versions by calling `annotate_repostitles`.
 
 #### Annotate each package's function calls
 Adds all the unique functions being called by each loaded package, calls `annotate_fun_calls`.
+
+#### Annotate each package's datasets
+Adds all the datasets being called by each loaded package, calls `annotate_pkg_datasets`. Works for lazy loaded data, namespaced data, or objects called with `data`.
 
 #### Expand metapackages
 Replace a call to a metapackage with multiple calls to each of its core components.
