@@ -42,10 +42,11 @@ annotate_repostitle <- function(string_og) {
       "CRAN" ~ "CRAN",
     .data$repo == "Bioconductor" ~ "Bioconductor",
     .data$repo == "none" ~ "not installed on this machine",
+    str_detect(.data$repo,"universe")~.data$repo,# for Runiverse pkgs
     TRUE ~ repo_details(.data$pkgname_clean)
   ), annotation = dplyr::case_when(stringr::str_detect(
     user_repo,
-    "/"
+    "/(?!.+r-universe.+)"
   ) ~ paste0("[", .data$repo, "::", user_repo, "]"), TRUE ~ user_repo))
   pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(gsub("[\'\"]", "", .data$package_name)))
 

@@ -39,6 +39,8 @@ script.
 
 <img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif' align="center" width="400px" />
 
+As of version 0.2.3, loaded datasets can also be added as annotations.
+
 ## `pacman` compatibility
 
 Users of the [`pacman`](https://cran.r-project.org/package=pacman)

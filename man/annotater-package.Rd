@@ -22,5 +22,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Luis D. Verde Arregoitia \email{luis@liomys.mx} (\href{https://orcid.org/0000-0001-9520-6543}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Juan Cruz Rodriguez [contributor]
+  \item Hadley Wickham [contributor]
+}
+
 }
 \keyword{internal}

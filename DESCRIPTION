@@ -1,19 +1,21 @@
 Package: annotater
 Title: Annotate Package Load Calls
 Version: 0.2.2
-Authors@R: 
+Authors@R: c(
     person(given = "Luis D.",
            family = "Verde Arregoitia",
            role = c("aut", "cre"),
            email = "luis@liomys.mx",
-           comment = c(ORCID = "0000-0001-9520-6543"))
+           comment = c(ORCID = "0000-0001-9520-6543")),
+    person("Juan","Cruz Rodriguez",role="ctb"),
+    person("Hadley","Wickham",role="ctb"))
 Description: Provides non-invasive annotation of package load calls 
     such as \code{library()}, \code{p_load()}, and \code{require()} so that we can have an idea of what 
     the packages we are loading are meant for.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: 
     stringr,
     purrr,

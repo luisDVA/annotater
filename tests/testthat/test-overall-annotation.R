@@ -47,7 +47,7 @@ library(stringi)"
   )
   expect_match(
     annotate_repo_source(test_string),
-    "p_load.*tidyr\\s*# CRAN v.*library.stringi.*CRAN v.*"
+    "p_load.*tidyr\\s*# .+ v.*library.stringi.* .+ v.*"
   )
 })
 

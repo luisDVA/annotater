@@ -1,3 +1,10 @@
+# annotater 0.2.3
+
+* Fix failing tests
+* Better annotations for packages installed from R-universe
+* Dataset annotation added
+* Modern tidyselect syntax (thanks to PR by Hadley Wickham)
+
 # annotater 0.2.2
 
 * Bug fixes

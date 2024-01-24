@@ -13,7 +13,8 @@ annotate_fun_calls(string_og)
 text string with function call annotations. Will make note of
   packages not currently installed. Lines with existing comments or
   annotations are ignored by the regular expression that matches package
-  names.
+  names. Be aware that package-specific methods (e.g., print or summary
+  methods) will be annotated too.
 }
 \description{
 Annotate function calls
