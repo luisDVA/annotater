@@ -103,6 +103,7 @@ annotations for function calls are desired.
 Feedback welcome
 
 Thanks to [Jonathan Carroll](https://github.com/jonocarroll), [Firat
-Melih Yilmaz](https://github.com/fmyilmaz), and [Achaz von
+Melih Yilmaz](https://github.com/fmyilmaz), [Paul
+Schmidt](https://github.com/SchmidtPaul), and [Achaz von
 Hardenberg](https://github.com/achazhardenberg) for feedback and
 suggestions.
