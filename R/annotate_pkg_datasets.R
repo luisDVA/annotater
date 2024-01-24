@@ -40,11 +40,11 @@ annotate_pkg_datasets <- function(string_og) {
     "SPECIAL" # dplyr pipes appear as SPECIAL .
   ))
   text_expr <- dplyr::filter(filtered_text, .data$token == "expr")
-  expr_df <- dplyr::distinct(dplyr::select(text_expr, .data$text))
+  expr_df <- dplyr::distinct(dplyr::select(text_expr, "text"))
   expr_df <- dplyr::mutate(expr_df, text = stringr::str_remove_all(.data$text, '^[\'\"]|[\'\"]$'))
 
   # build annotations
-  datmatches <- dplyr::rename(dplyr::left_join(pkgdatasets, expr_df, by = c("dataset" = "text"), keep = TRUE), matched = .data$text)
+  datmatches <- dplyr::rename(dplyr::left_join(pkgdatasets, expr_df, by = c("dataset" = "text"), keep = TRUE), matched = "text")
   datmatches <- dplyr::filter(datmatches, !is.na(.data$matched))
   datmatches$matched <- stringr::str_remove(datmatches$matched, ".*::")
   datmatches <- dplyr::distinct(datmatches, .data$source_pkg, .data$matched)
