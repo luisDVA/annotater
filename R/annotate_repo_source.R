@@ -24,7 +24,7 @@ annotate_repo_source <- function(string_og) {
                           fields = c("Repository", "RemoteType", "biocViews")
   ))
   pck_descs <- purrr::map(pck_descs, as.list)
-  pck_descs <- tidyr::unnest(tibble::enframe(purrr::map(pck_descs, purrr::flatten_chr)), cols = c(.data$value))
+  pck_descs <- tidyr::unnest(tibble::enframe(purrr::map(pck_descs, purrr::flatten_chr)), cols = c("value"))
   pck_descs <- dplyr::rename(pck_descs, rowid = 1, repo = 2)
   pck_descs <- dplyr::left_join(out_tb, pck_descs, by = "rowid")
   pck_descs <- dplyr::mutate(pck_descs, repo = ifelse(stringr::str_detect(.data$repo, ","), "Bioconductor", .data$repo))
