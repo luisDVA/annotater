@@ -9,4 +9,4 @@ No ERRORs, WARNINGs, or NOTEs.
   
 ## No dependency issues
 
-* This minor patch includes bug fixes and adds a function to work with metapackages.
+* This minor patch includes test fixes and modernization of tidyselect helpers.
