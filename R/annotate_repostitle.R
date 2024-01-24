@@ -63,7 +63,7 @@ annotate_repostitle <- function(string_og) {
   }
 
   if (all(grepl("p_load", pck_descs$call))) { # only pacman calls
-    pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld <- pck_descs[which(stringr::str_detect(out_tb$call, ".+load\\(")), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, " ", pacld$annotation, " v", pacld$version)
@@ -79,7 +79,7 @@ annotate_repostitle <- function(string_og) {
   }
 
   if (any(grepl("p_load", pck_descs$call)) & any(grepl("libr|req", out_tb$call))) { # pacman and base calls
-    pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld <- pck_descs[which(stringr::str_detect(out_tb$call, ".+load\\(")), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, " ", pacld$annotation, " v", pacld$version)
