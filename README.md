@@ -102,7 +102,7 @@ annotations for function calls are desired.
 
 Feedback welcome
 
-Thanks to [Jonathan Carroll](https://github.com/jonocarroll), [Fırat
-Melih Yılmaz](https://twitter.com/fratmelhylmaz), and [Achaz von
+Thanks to [Jonathan Carroll](https://github.com/jonocarroll), [Firat
+Melih Yilmaz](https://github.com/fmyilmaz), and [Achaz von
 Hardenberg](https://github.com/achazhardenberg) for feedback and
 suggestions.
