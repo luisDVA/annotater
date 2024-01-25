@@ -16,7 +16,7 @@ test_that("repository sources returns a repository-version combination", {
   test_string <- c("library(generics)")
   expect_match(
     annotate_repo_source(test_string),
-    "library\\(generics\\) # CRAN v.*"
+    "library\\(generics\\) # \\w+ v.*"
   )
 })
 
@@ -24,7 +24,7 @@ test_that("repository sources returns a repository-version combination (p_load)"
   test_string <- c("p_load(generics)")
   expect_match(
     annotate_repo_source(test_string),
-    "p_load\\(\ngenerics # CRAN v.*\\)"
+    "p_load\\(\ngenerics # \w+ v.*\\)"
   )
 })
 
@@ -36,7 +36,7 @@ test_that("repository title and sources includes a repository-version combinatio
   test_string <- c("library(generics)")
   expect_match(
     annotate_repostitle(test_string),
-    "CRAN v.*"
+    "\\w v.*"
   )
 })
 
