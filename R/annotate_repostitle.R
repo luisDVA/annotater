@@ -41,7 +41,7 @@ annotate_repostitle <- function(string_og) {
     .data$repo ==
       "CRAN" ~ "CRAN",
     .data$repo == "Bioconductor" ~ "Bioconductor",
-    .data$repo == "RSPM" ~ "Posit Public Package Manager",
+    .data$repo == "RSPM" ~ "Posit RPSM",
     .data$repo == "none" ~ "not installed on this machine",
     str_detect(.data$repo,"universe")~.data$repo,# for Runiverse pkgs
     TRUE ~ repo_details(.data$pkgname_clean)
@@ -56,10 +56,10 @@ annotate_repostitle <- function(string_og) {
     pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, ", ", pck_descs$annotation, " v", pck_descs$version)
 
     return(
-      align_annotations(stringi::stri_replace_all_fixed(
+      stringi::stri_replace_all_fixed(
         str = string_og, pattern = pck_descs$call,
         replacement = pck_descs$annotated, vectorize_all = FALSE
-      ))
+      )
     )
   }
 
@@ -72,10 +72,10 @@ annotate_repostitle <- function(string_og) {
     pacld$ldcalls <- stringr::str_extract(pacld$call, ".+\\(")
     pacld <- dplyr::mutate(pacld, annotpac = paste(.data$ldcalls, .data$pkgs, ")", sep = "\n "))
     return(
-      align_annotations(stringi::stri_replace_all_fixed(
+      stringi::stri_replace_all_fixed(
         str = string_og, pattern = pacld$call,
         replacement = pacld$annotpac, vectorize_all = FALSE
-      ))
+      )
     )
   }
 
