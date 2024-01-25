@@ -41,6 +41,7 @@ annotate_repostitle <- function(string_og) {
     .data$repo ==
       "CRAN" ~ "CRAN",
     .data$repo == "Bioconductor" ~ "Bioconductor",
+    .data$repo == "RSPM" ~ "Posit Public Package Manager",
     .data$repo == "none" ~ "not installed on this machine",
     str_detect(.data$repo,"universe")~.data$repo,# for Runiverse pkgs
     TRUE ~ repo_details(.data$pkgname_clean)
