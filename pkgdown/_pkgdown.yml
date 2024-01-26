@@ -8,9 +8,11 @@ reference:
   desc:
   contents:
   - '`annotate_pkg_calls`'
+  - '`annotate_pkg_datasets`'
   - '`annotate_repo_source`'
   - '`annotate_script`'
   - '`annotate_fun_calls`'
+  - '`expand_metapackages`'
   - '`match_pkg_names`'
 - title: RStudio addins
   desc:
@@ -19,6 +21,8 @@ reference:
   - '`annotate_repos_active_file`'
   - '`annotate_repostitle_active`'
   - '`annotate_fun_calls_active_file`'
+  - '`annotate_data_active_file`'
+  - '`expand_metapackages_active_file`'
 - title: Helper functions
   desc:
   contents:
@@ -26,3 +30,5 @@ reference:
   - '`annotate_repostitle`'
   - '`pkg_version`'
   - '`repo_details`'
+  - '`check_pkgs`'
+  - '`get_pkg_datasets`'
