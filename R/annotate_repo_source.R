@@ -47,7 +47,7 @@ annotate_repo_source <- function(string_og) {
     "(?<!/)/(?!/)"
   ) ~ paste0("[", .data$repo, "::", user_repo, "]"), TRUE ~ user_repo))
   pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(.data$pkgname_clean))
-  # case with a single locally installed package
+  # edge case with a single locally installed package
   if (nrow(pck_descs) == 0) {
     locannot <- paste(out_tb$call,"# local install")
     return(
@@ -61,7 +61,10 @@ annotate_repo_source <- function(string_og) {
 
   # build annotation
   if (all(!grepl("p_load", pck_descs$call))) { # no pacman calls
-    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$annotation, " v", pck_descs$version)
+    pck_descs <-  dplyr::mutate(pck_descs,annotated=dplyr::case_when(
+      stringr::str_detect(annotation,"not installed")~paste0(call, " #", " ", annotation, " vNA"),
+      TRUE~ paste0(call, " #", " ", annotation, " v", version)
+    ))
     return(
       align_annotations(stringi::stri_replace_all_fixed(
         str = string_og, pattern = pck_descs$call,
@@ -71,7 +74,7 @@ annotate_repo_source <- function(string_og) {
   }
 
   if (all(grepl("p_load", pck_descs$call))) { # only pacman calls
-    pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld <- pck_descs[which(stringr::str_detect(out_tb$call, ".+load\\(")), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ",")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, " # ", pacld$annotation, " v", pacld$version)
@@ -87,7 +90,7 @@ annotate_repo_source <- function(string_og) {
   }
 
   if (any(grepl("p_load", pck_descs$call)) & any(grepl("libr|req", out_tb$call))) { # pacman and base calls
-    pacld <- pck_descs[stringr::str_detect(out_tb$call, ".+load\\("), ]
+    pacld <- pck_descs[which(stringr::str_detect(pck_descs$call, ".+load\\(")), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ",")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, " # ", pacld$annotation, " v", pacld$version)
@@ -99,12 +102,15 @@ annotate_repo_source <- function(string_og) {
       replacement = pacld$annotpac, vectorize_all = FALSE
     )
     pck_descs <- pck_descs[!stringr::str_detect(out_tb$call, ".+load\\("), ]
-    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$annotation, " v", pck_descs$version)
+    pck_descs <-  dplyr::mutate(pck_descs,annotated=dplyr::case_when(
+      stringr::str_detect(annotation,"not installed")~paste0(call, " #", " ", annotation, " vNA"),
+      TRUE~ paste0(call, " #", " ", annotation, " v", version)
+    ))
 
     return(
       align_annotations(
         stringi::stri_replace_all_fixed(
-          str = string_og, pattern = out_tb$call,
+          str = string_og, pattern = pck_descs$call,
           replacement = pck_descs$annotated, vectorize_all = FALSE
         )
       )

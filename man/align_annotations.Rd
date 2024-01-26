@@ -6,8 +6,8 @@
 \usage{
 align_annotations(
   annot_string,
-  regex_ai =
-    "(?!\\\\))(?!\\\\s)(?=\\\\#\\\\sCRAN\\\\sv|\\\\#\\\\sBiocon|\\\\#\\\\snot\\\\sinstal|\\\\#\\\\s\\\\[)",
+  regex_ai = paste0("(?!\\\\))(?!\\\\s)(?=\\\\#\\\\sCRAN\\\\sv|",
+    "\\\\#\\\\sBiocon|\\\\#\\\\snot\\\\sinstall|", "\\\\#\\\\s\\\\[|\\\\#\\\\sPosit R)"),
   sep_str = ""
 )
 }

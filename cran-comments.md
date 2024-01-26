@@ -1,6 +1,7 @@
 ## Test environments
-- R-hub Windows Server 2022 (r-devel,64 bit)  
-- R-hub fedora-clang-devel (r-devel)
+- Windows Server 2022 (r-devel,64 bit) [build 20348]  
+- R-hub Fedora Linux, R-devel, clang, gfortran
+- R-hub Ubuntu Linux 20.04.1 LTS, R-release, GCC
 
 No ERRORs or WARNINGs
 
@@ -9,4 +10,4 @@ No ERRORs, WARNINGs, or NOTEs.
   
 ## No dependency issues
 
-* This minor patch includes test fixes and modernization of tidyselect helpers.
+* This minor patch includes test fixes and modernization of tidyselect helpers, fewer assumptions about the package sources in different build environments.

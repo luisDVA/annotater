@@ -43,7 +43,7 @@ annotate_repostitle <- function(string_og) {
     .data$repo == "Bioconductor" ~ "Bioconductor",
     .data$repo == "RSPM" ~ "Posit RPSM",
     .data$repo == "none" ~ "not installed on this machine",
-    str_detect(.data$repo,"universe")~.data$repo,# for Runiverse pkgs
+    stringr::str_detect(.data$repo,"universe")~.data$repo,# for Runiverse pkgs
     TRUE ~ repo_details(.data$pkgname_clean)
   ), annotation = dplyr::case_when(stringr::str_detect(
     user_repo,
@@ -53,8 +53,10 @@ annotate_repostitle <- function(string_og) {
 
   # build annotations
   if (all(!grepl("p_load", pck_descs$call))) { # no pacman calls
-    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, ", ", pck_descs$annotation, " v", pck_descs$version)
-
+    pck_descs <-  dplyr::mutate(pck_descs,annotated=dplyr::case_when(
+      stringr::str_detect(title,"not installed")~paste0(call, " # ", annotation, " vNA"),
+      TRUE~ paste0(call, " # ", title, " ", annotation, " v", version)
+    ))
     return(
       stringi::stri_replace_all_fixed(
         str = string_og, pattern = pck_descs$call,
@@ -64,7 +66,7 @@ annotate_repostitle <- function(string_og) {
   }
 
   if (all(grepl("p_load", pck_descs$call))) { # only pacman calls
-    pacld <- pck_descs[which(stringr::str_detect(out_tb$call, ".+load\\(")), ]
+    pacld <- pck_descs[which(stringr::str_detect(pck_descs$call, ".+load\\(")), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, " ", pacld$annotation, " v", pacld$version)
@@ -80,7 +82,7 @@ annotate_repostitle <- function(string_og) {
   }
 
   if (any(grepl("p_load", pck_descs$call)) & any(grepl("libr|req", out_tb$call))) { # pacman and base calls
-    pacld <- pck_descs[which(stringr::str_detect(out_tb$call, ".+load\\(")), ]
+    pacld <- pck_descs[which(stringr::str_detect(pck_descs$call, ".+load\\(")), ]
     pacld$pkgnamesep <- paste0(pacld$package_name, ", ")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotatedpac <- paste0(pacld$pkgnamesep, "# ", pacld$title, " ", pacld$annotation, " v", pacld$version)
@@ -91,8 +93,11 @@ annotate_repostitle <- function(string_og) {
       str = string_og, pattern = pacld$call,
       replacement = pacld$annotpac, vectorize_all = FALSE
     )
-    pck_descs <- pck_descs[!stringr::str_detect(out_tb$call, ".+load\\("), ]
-    pck_descs$annotated <- paste0(pck_descs$call, " # ", pck_descs$title, " ", pck_descs$annotation, " v", pck_descs$version)
+    pck_descs <- pck_descs[which(!stringr::str_detect(pck_descs$call, ".+load\\(")), ]
+    pck_descs <-  dplyr::mutate(pck_descs,annotated=dplyr::case_when(
+      stringr::str_detect(title,"not installed")~paste0(call, " #", " ", annotation, " vNA"),
+      TRUE~ paste0(call, " # ", title, " ", annotation, " v", version)
+    ))
 
     return(
       stringi::stri_replace_all_fixed(
