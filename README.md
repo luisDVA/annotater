@@ -1,9 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# annotater
-
-<img src='man/figures/logo.png' align="right" height="210" />
+# annotater <img src='man/figures/logo.png' align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -20,6 +18,9 @@ strings and R/Rmd files, so we can have an idea of the overall purpose
 of the libraries we’re loading.
 
 ### What do my loaded packages do?
+
+*note: the gifs below may show fewer addins than the current release but
+the functionality is unchanged*
 
 <img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif' align="center" width="400px" />
 

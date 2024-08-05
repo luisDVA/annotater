@@ -1,90 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>annotater.liomys.mx/404.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/articles/annotater_intro.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/authors.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/index.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/news/index.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/align_annotations.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_active_file.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_data_active_file.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_fun_calls.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_fun_calls_active_file.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_pkg_calls.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_pkg_datasets.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_repo_source.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_repos_active_file.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_repostitle.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_repostitle_active.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotate_script.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/annotater-package.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/check_pkgs.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/expand_metapackages.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/expand_metapackages_active_file.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/get_pkg_datasets.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/match_pkg_names.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/pkg_version.html</loc>
-  </url>
-  <url>
-    <loc>annotater.liomys.mx/reference/repo_details.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>annotater.liomys.mx/404.html</loc></url>
+<url><loc>annotater.liomys.mx/LICENSE-text.html</loc></url>
+<url><loc>annotater.liomys.mx/LICENSE.html</loc></url>
+<url><loc>annotater.liomys.mx/articles/annotater_intro.html</loc></url>
+<url><loc>annotater.liomys.mx/articles/index.html</loc></url>
+<url><loc>annotater.liomys.mx/authors.html</loc></url>
+<url><loc>annotater.liomys.mx/index.html</loc></url>
+<url><loc>annotater.liomys.mx/news/index.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/align_annotations.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_active_file.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_data_active_file.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_fun_calls.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_fun_calls_active_file.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_pkg_calls.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_pkg_datasets.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_repo_source.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_repos_active_file.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_repostitle.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_repostitle_active.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_script.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotater-package.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/check_pkgs.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/expand_metapackages.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/expand_metapackages_active_file.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/get_pkg_datasets.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/index.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/match_pkg_names.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/pkg_version.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/repo_details.html</loc></url>
 </urlset>
+

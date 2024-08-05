@@ -1,8 +1,18 @@
 title: annotater
 url: annotater.liomys.mx
+
 template:
-  params:
-    bootswatch: spacelab
+  bootstrap: 5
+  light-switch: true
+  bslib:
+    primary: "#0054AD"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
+    danger: "#A6081A"
+    base_font:
+     google: {family: "Rethink Sans", wght: [400, 500, 700], ital: [0, 1]}
+    code_font: {google: "Red Hat Mono"}
+
 reference:
 - title: Annotation builders
   desc:
