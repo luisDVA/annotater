@@ -25,5 +25,12 @@ annotate_r_version <- function() {
     )
     session_info <- paste0(session_info, rstudio_info)
   }
-  insertText(c(1, 1), paste0(session_info, "# \n"), id = context$id)
+  insert_code_position <- c(1, 1)
+  # It will annotate after the first "```{r",  "```{r," or "```{r ".
+  markdown_first_r_chunk <- grep("^```\\{r(}| |,)", context$contents)
+  if (length(markdown_first_r_chunk) > 0) {
+    # If we found a "```", it means this is not a valid R file, so we consider it's a markdown.
+    insert_code_position <- c(markdown_first_r_chunk[[1]] + 1, 1)
+  }
+  insertText(insert_code_position, paste0(session_info, "# \n"), id = context$id)
 }
