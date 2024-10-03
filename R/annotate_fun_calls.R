@@ -12,16 +12,18 @@
 #' test_string <- c("library(boot)\nrequire(lattice)\ncanonical.theme()")
 #' cat(annotate_fun_calls(test_string))
 #'
-#' @importFrom dplyr `%>%` filter pull
+#' @importFrom dplyr `%>%` distinct filter pull
+#' @importFrom knitr purl
 #' @importFrom purrr map
+#' @importFrom rlang .data
 #' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tibble rowid_to_column
-#' @importFrom rlang .data
 #'
 #' @export
 #'
 annotate_fun_calls <- function(string_og) {
   out_tb <- match_pkg_names(string_og) # list, ordered, packages loading.
+  out_tb <- distinct(out_tb, pkgname_clean, .keep_all = TRUE)
   if (nrow(out_tb) == 0) {
     # if no library or require calls, then return same string.
     cat("no matching library load calls")
@@ -34,7 +36,7 @@ annotate_fun_calls <- function(string_og) {
   if (all(!grepl("p_load", out_tb$call))) { # no pacman calls
     # Removing quotes from package loading name!
     out_tb$annotation <- unlist(purrr::map(out_tb$pkgname_clean, ~ {
-      pkg_funs <- 'not installed on this machine' # default annotation
+      pkg_funs <- "not installed on this machine" # default annotation
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -44,7 +46,7 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         # notify which packages do not have functions being used.
-        pkg_funs <- 'No used functions found'
+        pkg_funs <- "No used functions found"
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
@@ -66,7 +68,7 @@ annotate_fun_calls <- function(string_og) {
     pacld$pkgnamesep <- paste0(pacld$package_name, ",")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotation <- unlist(purrr::map(gsub("\"|'", "", pacld$package_name), ~ {
-      pkg_funs <- 'not installed on this machine' # default annotation.
+      pkg_funs <- "not installed on this machine" # default annotation.
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -76,7 +78,7 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         #  notify which packages do not have functions being used.
-        pkg_funs <- 'No used functions found'
+        pkg_funs <- "No used functions found"
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
@@ -98,7 +100,7 @@ annotate_fun_calls <- function(string_og) {
     pacld$pkgnamesep <- paste0(pacld$package_name, ",")
     pacld <- dplyr::mutate(dplyr::group_by(pacld, call), pkgnamesep = ifelse(dplyr::row_number() == dplyr::n(), gsub(",", "", .data$pkgnamesep), .data$pkgnamesep))
     pacld$annotation <- unlist(purrr::map(gsub("\"|'", "", pacld$package_name), ~ {
-      pkg_funs <- 'not installed on this machine' # default annotation.
+      pkg_funs <- "not installed on this machine" # default annotation.
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -108,7 +110,7 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         #  notify which packages do not have functions being used.
-        pkg_funs <- 'No used functions found'
+        pkg_funs <- "No used functions found"
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
@@ -123,7 +125,7 @@ annotate_fun_calls <- function(string_og) {
     )
     out_tb <- out_tb[!stringr::str_detect(out_tb$call, ".+load\\("), ]
     out_tb$annotation <- unlist(purrr::map(gsub("\"|'", "", out_tb$package_name), ~ {
-      pkg_funs <- 'not installed on this machine' # default annotation.
+      pkg_funs <- "not installed on this machine" # default annotation.
       if (
         suppressMessages(suppressWarnings(require(.x, character.only = TRUE)))
       ) {
@@ -133,7 +135,7 @@ annotate_fun_calls <- function(string_og) {
       }
       if (length(pkg_funs) == 0) {
         #  notify which packages do not have functions being used.
-        pkg_funs <- 'No used functions found'
+        pkg_funs <- "No used functions found"
       }
       paste(pkg_funs, collapse = " ") # return a final string.
     }))
@@ -161,8 +163,13 @@ annotate_fun_calls <- function(string_og) {
 #
 get_function_calls <- function(string_og) {
   token <- text <- NULL
-  base::parse(text = string_og, keep.source = TRUE) %>% # parse text.
-    utils::getParseData(includeText = TRUE) %>% # format as table.
+  # parse text.
+  string_code <- try(base::parse(text = string_og, keep.source = TRUE), silent = TRUE)
+  if (inherits(string_code, "try-error")) {
+    # If it failed to parse the code, then let's try parsing it as an Rmarkdown script.
+    string_code <- base::parse(text = knitr::purl(text = string_og), keep.source = TRUE)
+  }
+  utils::getParseData(string_code, includeText = TRUE) %>% # format as table.
     filter(token %in% c( # keep only tokens of interest.
       "SYMBOL_FUNCTION_CALL",
       "SPECIAL" # dplyr pipes appear as SPECIAL .
