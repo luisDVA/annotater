@@ -28,4 +28,7 @@ Description: Expand into separate load calls
 Binding: expand_metapackages_active_file
 Interactive: false
 
-
+Name: Annotate with R version
+Description: Adds R version, running OS and RStudio version
+Binding: annotate_r_version
+Interactive: false
