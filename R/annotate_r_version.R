@@ -9,8 +9,8 @@ annotate_r_version <- function() {
     stop("Focus (blinking cursor) is not on an open R file")
   }
   # Get and parse R session info.
-  session_info  <- sessionInfo()
-  session_info  <- paste0(
+  session_info <- sessionInfo()
+  session_info <- paste0(
     "# ", session_info$R.version$version.string, "\n",
     "# Platform: ", session_info$platform, "\n",
     "# Running under: ", session_info$running, "\n"
@@ -30,7 +30,13 @@ annotate_r_version <- function() {
   markdown_first_r_chunk <- grep("^```\\{r(}| |,)", context$contents)
   if (length(markdown_first_r_chunk) > 0) {
     # If we found a "```", it means this is not a valid R file, so we consider it's a markdown.
-    insert_code_position <- c(markdown_first_r_chunk[[1]] + 1, 1)
+    insert_code_position <- markdown_first_r_chunk[[1]] + 1
+    # If this is a quarto file, we should skip the lines starting with "#|" after the "```".
+    while (insert_code_position <= length(context$contents) &&
+           grepl("^#| ", context$contents[[insert_code_position]])) {
+      insert_code_position <- insert_code_position + 1
+    }
+    insert_code_position <- c(insert_code_position, 1)
   }
   insertText(insert_code_position, paste0(session_info, "# \n"), id = context$id)
 }
