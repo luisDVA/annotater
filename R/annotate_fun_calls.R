@@ -31,6 +31,13 @@ annotate_fun_calls <- function(string_og) {
   }
 
   fun_calls <- get_function_calls(string_og) # get script's function calls.
+  if (length(fun_calls) == 0) {
+    # If we couldn't parse any function call then it means there are syntax errors.
+    stop(
+      "No code could be parsed, please make sure your R code has no syntax errors.",
+      call. = FALSE
+    )
+  }
 
   # build annotations
   if (all(!grepl("p_load", out_tb$call))) { # no pacman calls
