@@ -5,10 +5,7 @@
 #'
 #' @export
 annotate_active_file <- function() {
-  context <- rstudioapi::getActiveDocumentContext()
-  if (context[1]$id == "#console") {
-    stop("Focus (blinking cursor) is not on an open R file")
-  }
+  context <- rstudioapi::getSourceEditorContext()
   contents_parsed <- paste0(context$contents, sep = "\n", collapse = "")
   out <- annotater::annotate_pkg_calls(contents_parsed)
   outlines <- stringi::stri_split_lines1(out)
