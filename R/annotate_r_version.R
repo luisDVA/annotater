@@ -1,13 +1,10 @@
 #' Annotate R Version
 #'
-#' @importFrom rstudioapi getActiveDocumentContext insertText versionInfo
+#' @importFrom rstudioapi getSourceEditorContext insertText versionInfo
 #' @importFrom utils sessionInfo
 #'
 annotate_r_version <- function() {
-  context <- getActiveDocumentContext()
-  if (context[1]$id == "#console") {
-    stop("Focus (blinking cursor) is not on an open R file")
-  }
+  context <- getSourceEditorContext()
   # Get and parse R session info.
   session_info <- sessionInfo()
   session_info <- paste0(
