@@ -24,6 +24,7 @@ reference:
   - '`annotate_fun_calls`'
   - '`expand_metapackages`'
   - '`match_pkg_names`'
+  - '`annotate_r_version`'
 - title: RStudio addins
   desc:
   contents:
@@ -33,6 +34,7 @@ reference:
   - '`annotate_fun_calls_active_file`'
   - '`annotate_data_active_file`'
   - '`expand_metapackages_active_file`'
+  - '`annotate_r_version`'
 - title: Helper functions
   desc:
   contents:

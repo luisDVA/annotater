@@ -1,5 +1,6 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>annotater.liomys.mx/404.html</loc></url>
+<url><loc>annotater.liomys.mx/CODE_OF_CONDUCT.html</loc></url>
 <url><loc>annotater.liomys.mx/LICENSE-text.html</loc></url>
 <url><loc>annotater.liomys.mx/LICENSE.html</loc></url>
 <url><loc>annotater.liomys.mx/articles/annotater_intro.html</loc></url>
@@ -14,6 +15,7 @@
 <url><loc>annotater.liomys.mx/reference/annotate_fun_calls_active_file.html</loc></url>
 <url><loc>annotater.liomys.mx/reference/annotate_pkg_calls.html</loc></url>
 <url><loc>annotater.liomys.mx/reference/annotate_pkg_datasets.html</loc></url>
+<url><loc>annotater.liomys.mx/reference/annotate_r_version.html</loc></url>
 <url><loc>annotater.liomys.mx/reference/annotate_repo_source.html</loc></url>
 <url><loc>annotater.liomys.mx/reference/annotate_repos_active_file.html</loc></url>
 <url><loc>annotater.liomys.mx/reference/annotate_repostitle.html</loc></url>

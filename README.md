@@ -206,5 +206,5 @@ library(yardstick)
 ## Code of Conduct
 
 Please note that the annotater project is released with a [Contributor
-Code of Conduct](annotater.liomys.mx/CODE_OF_CONDUCT.html). By
+Code of Conduct](https://annotater.liomys.mx/CODE_OF_CONDUCT.html). By
 contributing to this project, you agree to abide by its terms.

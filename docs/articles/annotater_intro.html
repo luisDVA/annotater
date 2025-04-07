@@ -16,8 +16,8 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Rethink_Sans-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/Red_Hat_Mono-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to annotater">
 </head>
 <body>
@@ -95,7 +95,7 @@ record of where any of the packages can be obtained.</p>
 load calls (i.e. <code>library</code> and <code>require</code>) in a
 character string with one line per element, and replace them with
 annotated versions. As of version 0.2.0, loading packages with
-<code>pacman::p_load</code> is also supported.</p>
+<code><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">pacman::p_load</a></code> is also supported.</p>
 <p>First, <code>match_pkg_names</code> produces a tibble of package load
 calls and package names.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -123,13 +123,13 @@ paste the repository source and version number.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(lattice)"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/annotate_repo_source.html">annotate_repo_source</a></span><span class="op">(</span><span class="va">pkgs_string</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "library(boot)    # CRAN v1.3-30\nrequire(lattice) # CRAN v0.22-5"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "library(boot)    # [standard::NA/NA] v1.3-31\nrequire(lattice) # [standard::NA/NA] v0.22-6"</span></span></code></pre></div>
 <p>Titles, repositories and version numbers can be annotated together in
 the output from <code>annotate_repostitle</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"library(boot)\nrequire(lattice)"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/annotate_repostitle.html">annotate_repostitle</a></span><span class="op">(</span><span class="va">pkgs_string</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "library(boot) # Bootstrap Functions (Originally by Angelo Canty for S) CRAN v1.3-30\nrequire(lattice) # Trellis Graphics for R CRAN v0.22-5"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "library(boot) # Bootstrap Functions (Originally by Angelo Canty for S) [standard::NA/NA] v1.3-31 # Bootstrap Functions (Originally by Angelo Canty for S) CRAN v1.3-31\nrequire(lattice) # Trellis Graphics for R [standard::NA/NA] v0.22-6 # Trellis Graphics for R CRAN v0.22-6"</span></span></code></pre></div>
 <p>To annotate which functions are being called from each loaded
 package, use <code>annotate_fun_calls</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -216,7 +216,7 @@ core components.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer>
