@@ -13,98 +13,198 @@ coverage](https://codecov.io/gh/luisDVA/annotater/branch/master/graph/badge.svg)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/annotater?color=blue)](https://cran.r-project.org/package=annotater)
 <!-- badges: end -->
 
-The goal of `annotater` is to annotate package load calls in character
-strings and R/Rmd files, so we can have an idea of the overall purpose
-of the libraries we’re loading.
-
-### What do my loaded packages do?
-
-*note: the gifs below may show fewer addins than the current release but
-the functionality is unchanged*
-
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotcalls.gif' align="center" width="400px" />
-
-### Where did I get them?
-
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repos2.gif' align="center" width="400px" />
-
-------------------------------------------------------------------------
-
-The two annotation types are also available together:
-
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/repostitles.gif' align="center" width="400px" />
-
-Thanks to [Juan Cruz Rodriguez](https://github.com/jcrodriguez1989), we
-can now annotate which functions from each package are being called in a
-script.
-
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/jcruz.gif' align="center" width="400px" />
-
-As of version 0.2.3, loaded datasets can also be added as annotations.
-
-## `pacman` compatibility
-
-Users of the [`pacman`](https://cran.r-project.org/package=pacman)
-package can now use all `annotater` functions on `p_load` calls. This
-includes calls with multiple package names
-(e.g. `p_load(ggplot2,purrr)`), which will be split up across lines for
-readability.
-
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotpacmanFns.gif' align="center" width="400px" />
-
-<img src='https://raw.githubusercontent.com/luisdva/annotater/master/inst/media/annotpacmanRepos.gif' align="center" width="400px" />
+The goal of annotater is to add informative comments to the package load
+calls in character strings, R, RMarkdown, or Quarto files, so that we
+can have an idea of the overall purpose of the libraries we are loading.
 
 ## Installation
 
 Install the CRAN release or the development version with:
 
 ``` r
-# Install annotater from CRAN:
+# Install from CRAN:
 install.packages("annotater")
-# install.packages("remotes")
+# development version
+## install.packages("remotes")
 remotes::install_github("luisDVA/annotater")
 ```
 
-Restart RStudio after the installation for the addins to load properly.
+Restart RStudio after installation for the addins to load properly.
 
-### When using the addins, make sure the focus (blinking cursor) is on an open RStudio R file in the ‘source’ pane.
+## Usage
 
-## Example
+Either through functions or working interactively with the RStudio
+addins, package load calls can be enhanced with different types of
+relevant information, added as comments next to each call. The example
+code below shows the output for the different functions.
 
-These are the possible annotations, which can be added to character
-strings (with one line per element), or applied to .R or .Rmd files in
-RStudio through their corresponding addins.
+### What do my loaded packages do?
+
+Package tiles from the respective DESCRIPTION files can be added to the
+load calls.
 
 ``` r
-library(annotater)
-test_string <-c("library(boot)\nrequire(Matrix)")
-writeLines(annotate_pkg_calls(test_string))
-writeLines(annotate_repo_source(test_string))
-writeLines(annotate_repo_source(test_string))
+library(brms) # Bayesian Regression Models using 'Stan'
+library(picante) # Integrating Phylogenies and Ecology
+library(report) # Automated Reporting of Results and Statistical Models
+library(tidybayes) # Tidy Data and 'Geoms' for Bayesian Models
 ```
 
-Entire .R files can also be parsed and annotated with the
-`annotate_script` function.
+### Where did I get them?
 
-### A note on the `tidyverse`
+Package installation sources and installed version numbers are added to
+the load calls. Supports installations from CRAN, Bioconductor, GitHub,
+GitLab, and R-universe.
 
-The `tidyverse` package is a meta-package with few exported functions of
-its own, so the annotation tools provided here (`annotate_fun_calls`)
-will not match the functions from the various individual packages (such
-as `dplyr` or `readr`) that get attached when loading `tidyverse`.
-Consider using the experimental `expand_metapackages` function first if
-annotations for function calls are desired.
+``` r
+library(brms)      # CRAN v2.21.0
+library(forcats)   # CRAN v1.0.0
+library(report)    # [github::easystats/report] v0.6.1
+library(tidybayes) # CRAN v3.0.6
+```
 
-### More on metapackages
+------------------------------------------------------------------------
 
-`annotater` can now expand metapackage load calls into separate
-`library` calls for the individual packages that form the core of
-`tidyverse`, `tidymodels`, and `easystats`.
+The two annotation types are also available together:
 
-Feedback welcome
+``` r
+library(picante) # Integrating Phylogenies and Ecology CRAN v1.8.2
+library(forcats) # Tools for Working with Categorical Variables (Factors) CRAN v1.0.0
+library(report) # Automated Reporting of Results and Statistical Models [github::easystats/report] v0.6.1
+library(tidybayes) # Tidy Data and 'Geoms' for Bayesian Models CRAN v3.0.6
+```
 
-Thanks to [Jonathan Carroll](https://github.com/jonocarroll), [Firat
-Melih Yilmaz](https://github.com/fmyilmaz), [Paul
-Schmidt](https://github.com/SchmidtPaul), and [Achaz von
-Hardenberg](https://github.com/achazhardenberg) for feedback and
-suggestions.
+### Which functions or datasets from a package are being used?
+
+For a given package, annotater can make notes of the functions or
+datasets that are being used in the current file.
+
+For functions in use:
+
+``` r
+library(ggplot2) # ggplot aes geom_bar
+library(dplyr) # group_by summarize mutate
+library(palmerpenguins) # No used functions found
+library(forcats) # fct_reorder
+library(data.table) # No used functions found
+
+data(penguins)
+
+summary_stats <- penguins |>
+  group_by(species, sex) |>
+  summarize(
+    mnmass = mean(body_mass_g),
+    medmass = median(body_mass_g)
+  ) |>
+  mutate(species = fct_reorder(species, mnmass))
+
+ggplot(summary_stats, aes(x = species, y = medmass, fill = sex)) +
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+Loaded datasets:
+
+``` r
+library(ggplot2) # No loaded datasets found
+library(dplyr) # No loaded datasets found
+library(palmerpenguins) # penguins
+library(forcats) # No loaded datasets found
+library(data.table) # No loaded datasets found
+
+data(penguins)
+
+summary_stats <- penguins |>
+  group_by(species, sex) |>
+  summarize(
+    mnmass = mean(body_mass_g),
+    medmass = median(body_mass_g)
+  ) |>
+  mutate(species = fct_reorder(species, mnmass))
+
+ggplot(summary_stats, aes(x = species, y = medmass, fill = sex)) +
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+## `pacman` compatibility
+
+Users of the [`pacman`](https://cran.r-project.org/package=pacman)
+package can now use all annotater functions on `p_load()` calls. This
+includes calls with multiple package names
+(e.g. `p_load(ggplot2,purrr)`), which will be split up across lines for
+readability.
+
+## R version and session information an as annotation
+
+The addin ‘Annotate with R version’ will add the current machine’s R
+version, platform, operating system and RStudio version to the
+beginnning of a file. This can be useful for reproducibility and
+debugging.
+
+``` r
+# R version 4.4.3 (2025-02-28)
+# Platform: x86_64-pc-linux-gnu
+# Running under: Linux Mint 22.1
+# Rstudio 2024.12.0.467 (Kousa Dogwood)
+# 
+library(brms)
+library(dplyr)
+library(tidybayes)
+```
+
+### A note on the tidyverse and other metapacakges
+
+The tidyverse package is a metapackage with few exported functions of
+its own, so the annotation tools provided here
+(e.g. `annotate_fun_calls`) will not match the functions from the
+various individual packages (such as dplyr or readr) that are attached
+when loading tidyverse.
+
+Consider using the `expand_metapackages` function first if annotations
+for function calls or datasets are desired. Load calls for metapackages
+will be split into separate `library()` calls for the individual
+packages that form the core of tidyverse, tidymodels, and easystats.
+
+``` r
+library(tidyverse)
+library(tidymodels)
+```
+
+Becomes:
+
+``` r
+####
+library(ggplot2)
+library(tibble)
+library(tidyr)
+library(readr)
+library(purrr)
+library(dplyr)
+library(stringr)
+library(forcats)
+library(lubridate)
+####
+####
+library(broom)
+library(dials)
+library(dplyr)
+library(ggplot2)
+library(infer)
+library(modeldata)
+library(parsnip)
+library(purrr)
+library(recipes)
+library(rsample)
+library(tibble)
+library(tidyr)
+library(tune)
+library(workflows)
+library(workflowsets)
+library(yardstick)
+####
+```
+
+## Code of Conduct
+
+Please note that the annotater project is released with a [Contributor
+Code of Conduct](annotater.liomys.mx/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
