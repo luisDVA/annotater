@@ -1,9 +1,9 @@
-pandoc: 3.1.11
-pkgdown: 2.1.0
-pkgdown_sha: ~
+pandoc: '3.2'
+pkgdown: 2.1.1.9000
+pkgdown_sha: 0cb9d38d1dc25946f01ee7500be9665985d8784e
 articles:
   annotater_intro: annotater_intro.html
-last_built: 2024-08-05T22:57Z
+last_built: 2025-04-07T22:03Z
 urls:
   reference: annotater.liomys.mx/reference
   article: annotater.liomys.mx/articles
