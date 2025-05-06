@@ -120,7 +120,7 @@ library(lubridate)
 #### 
 ```
 
-The development version can add R and RStudio versions, platform, and operating system to the beginning of a script.
+In its development version, `annotater` supports adding R and RStudio versions, platform, and operating system to the beginning of a script.
 
 ## Concluding remarks
 
