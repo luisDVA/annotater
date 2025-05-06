@@ -45,7 +45,7 @@ Lastly, identifying which parts of a script rely on specific packages and their 
 Upon installation, R packages already include useful details that we can leverage to automate the creation of these informative comments. These annotations can be particularly useful for sharing code with others, as a way to provide immediate context about why each package is being used and for what purpose. The code in a script can also be examined programatically so that the functions, methods, or datasets being used from each package can also be added as comments.
 
 
-Code can be annotated interactively using the package functions or through addins of the RStudio IDE.
+Code can be annotated interactively using the package functions or through addins in the RStudio IDE.
 
 The following annotations are supported. The code blocks below show the output of the different features on small scripts.
 
@@ -58,13 +58,13 @@ library(readr) # Read Rectangular Text Data
 library(picante) # Integrating Phylogenies and Ecology
 ```
 
-- Add package installation sources and versions. Supports various sources including CRAN, GitHub, GitLab, Bioconductor, Posit Package Manager (RPSM), and R-universe.
+- Add package installation sources and versions. Supports various sources including CRAN, GitHub, GitLab, Bioconductor, Posit Package Manager (RSPM), and R-universe.
 
 
 ``` r
 library(brms)    # [github::paul-buerkner/brms] v2.22.11
 library(caper)   # CRAN v1.0.3
-library(readr)   # Posit RPSM v2.1.5
+library(readr)   # Posit RSPM v2.1.5
 library(picante) # CRAN v1.8.2
 ```
 
@@ -97,7 +97,7 @@ hist(shorebird.data$F.Mass)
 
 ``` r
 # add source and version to pacman call
-library(readr) # Posit RPSM v2.1.5
+library(readr) # Posit RSPM v2.1.5
 pacman::p_load(
 caper,         # CRAN v1.0.3
 picante        # CRAN v1.8.2
