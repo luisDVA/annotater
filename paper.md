@@ -132,6 +132,6 @@ The `annotater` package provides a valuable solution by offering a non-invasive 
 
 # Acknowledgements
 
-We acknowledge the (LatinR)[https://latinr.org/] community for ongoing feedback and promotion of the package.
+We acknowledge the [LatinR](https://latinr.org/) community for ongoing feedback and promotion of the package.
 
 # References
