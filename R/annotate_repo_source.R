@@ -38,7 +38,7 @@ annotate_repo_source <- function(string_og) {
       "CRAN" ~ "CRAN",
     stringr::str_detect(.data$repo, "r-universe") ~ .data$repo,
     .data$repo == "Bioconductor" ~ "Bioconductor",
-    .data$repo == "RSPM" ~ "Posit RPSM",
+    .data$repo == "RSPM" ~ "Posit RSPM",
     .data$repo == "none" ~ "not installed on this machine",
     is.na(.data$repo) ~ "local install",
     TRUE ~ repo_details(.data$pkgname_clean)

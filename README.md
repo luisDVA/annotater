@@ -40,7 +40,7 @@ code below shows the output for the different functions.
 
 ### What do my loaded packages do?
 
-Package tiles from the respective DESCRIPTION files can be added to the
+Package titles from the respective DESCRIPTION files can be added to the
 load calls.
 
 ``` r

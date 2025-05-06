@@ -45,7 +45,7 @@ Either through functions or working interactively with the RStudio addins, packa
 
 ### What do my loaded packages do?
 
-Package tiles from the respective DESCRIPTION files can be added to the load calls.
+Package titles from the respective DESCRIPTION files can be added to the load calls.
 
 ```{r, eval=FALSE}
 library(brms) # Bayesian Regression Models using 'Stan'
@@ -53,6 +53,7 @@ library(picante) # Integrating Phylogenies and Ecology
 library(report) # Automated Reporting of Results and Statistical Models
 library(tidybayes) # Tidy Data and 'Geoms' for Bayesian Models
 ```
+
 ### Where did I get them?
 
 Package installation sources and installed version numbers are added to the load calls. Supports installations from CRAN, Bioconductor, GitHub, GitLab, and R-universe.
