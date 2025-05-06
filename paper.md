@@ -23,7 +23,7 @@ bibliography: paper.bib
 
 # Summary
 
-Extensions and packages extend the capabilities of a programming language, and working with source code and scripts rather than interactively lets us document and repeat our workflows. However, in the R ecosystem, the sheer number and diversity of existing packages can be overwhelming. In this context, the purpose of individual packages or their role in projects can become unclear. One approach for incorporating context about our loaded packages is by adding this information directly to our analysis or visualization code as comments. Code comments are annotations within code meant for the human reader, not the machine, meant to provide additional information or clarity to what is being executed [@Filazzola:2022].
+Extensions and packages extend the capabilities of a programming language, and working with source code and scripts rather than interactively lets us document and repeat our workflows. However, in the R ecosystem, the sheer number and diversity of existing packages can be overwhelming. In this context, the purpose of individual packages or their role in projects can become unclear. To address this lack of context, one practical approach is to add information directly to scripts using code comments. Code comments are annotations within code meant for the human reader, not the machine, meant to provide additional information or clarity to what is being executed [@Filazzola:2022].
 
 `annotater` is an R package for automated commenting of library load calls in R scripts, or text-based formats that allow for embedded code blocks such as R Markdown and Quarto (`.rmd` and `.qmd` files, respectively).
 
