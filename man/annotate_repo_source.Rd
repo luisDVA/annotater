@@ -19,6 +19,6 @@ text string with package repository source annotations. Will make
 Annotate repository sources
 }
 \examples{
-test_string <- c("library(boot)\nrequire(lattice)")
+test_string <- c("library(knitr)\nrequire(datasets)")
 annotate_repo_source(test_string)
 }

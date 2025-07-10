@@ -23,6 +23,6 @@ Some annotations may be long, check for possible line breaks
   introduced into your script.
 }
 \examples{
-test_string <- c("library(boot)\nrequire(lattice)")
+test_string <- c("library(knitr)\nrequire(datasets)")
 annotate_repostitle(test_string)
 }

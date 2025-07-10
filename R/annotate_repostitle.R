@@ -10,7 +10,7 @@
 #' @details Some annotations may be long, check for possible line breaks
 #'   introduced into your script.
 #' @examples
-#' test_string <- c("library(boot)\nrequire(lattice)")
+#' test_string <- c("library(knitr)\nrequire(datasets)")
 #' annotate_repostitle(test_string)
 #' @importFrom rlang .data
 #' @export
@@ -31,6 +31,18 @@ annotate_repostitle <- function(string_og) {
     fields = c("Repository", "RemoteType", "biocViews")
   )
   pck_descs <- purrr::map(pck_descs, as.list)
+  pck_descs <-
+    purrr::map(pck_descs, function(x) {
+      if (
+        !is.na(x$Repository) &&
+        x$Repository == "CRAN" &&
+        !is.na(x$RemoteType) &&
+        x$RemoteType == "standard"
+      ) {
+        x$RemoteType <- NA
+      }
+      x
+    })
   pck_descs <- tidyr::unnest(tibble::enframe(purrr::map(pck_descs, purrr::flatten_chr)), cols = c("value"))
   pck_descs <- dplyr::rename(pck_descs, rowid = 1, repo = 2)
   pck_descs <- dplyr::left_join(out_tb, pck_descs, by = "rowid")
