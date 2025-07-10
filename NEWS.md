@@ -1,5 +1,8 @@
 # annotater 0.2.4
 
+* Make annotations robust to CRAN packages installed with pak
+* Examples that work better in the minimal checking environments
+
 # annotater 0.2.3
 
 * Fix failing tests
