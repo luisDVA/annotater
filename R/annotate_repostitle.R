@@ -113,8 +113,10 @@ annotate_repostitle <- function(string_og) {
 
     return(
       stringi::stri_replace_all_fixed(
-        str = string_og, pattern = out_tb$call,
-        replacement = pck_descs$annotated, vectorize_all = FALSE
+        str = string_og,
+        pattern = pck_descs$call, # Changed 
+        replacement = pck_descs$annotated,
+        vectorize_all = FALSE
       )
     )
   }
