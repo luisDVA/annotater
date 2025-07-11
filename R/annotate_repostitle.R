@@ -48,20 +48,24 @@ annotate_repostitle <- function(string_og) {
   pck_descs <- dplyr::left_join(out_tb, pck_descs, by = "rowid")
   pck_descs <- dplyr::mutate(pck_descs, repo = ifelse(stringr::str_detect(.data$repo, ","), "Bioconductor", .data$repo))
   pck_descs <- dplyr::add_count(pck_descs, .data$package_name)
-  pck_descs <- stats::na.omit(dplyr::mutate(pck_descs, repo = dplyr::if_else(.data$n == 1, "none", .data$repo)))
+
+ pck_descs <- dplyr::mutate(pck_descs, repo = dplyr::if_else(!is.na(.data$repo) & .data$n == 1, "none", .data$repo)) # Ensure we only check n if repo is not NA
   pck_descs <- dplyr::mutate(pck_descs, user_repo = dplyr::case_when(
-    .data$repo ==
-      "CRAN" ~ "CRAN",
+    is.na(.data$repo) ~ "details not available", # Handle NA repo explicitly
+    .data$repo == "CRAN" ~ "CRAN",
     .data$repo == "Bioconductor" ~ "Bioconductor",
     .data$repo == "RSPM" ~ "Posit RSPM",
     .data$repo == "none" ~ "not installed on this machine",
-    stringr::str_detect(.data$repo,"universe")~.data$repo,# for Runiverse pkgs
-    TRUE ~ repo_details(.data$pkgname_clean)
-  ), annotation = dplyr::case_when(stringr::str_detect(
-    user_repo,
-    "/(?!.+r-universe.+)"
-  ) ~ paste0("[", .data$repo, "::", user_repo, "]"), TRUE ~ user_repo))
+    stringr::str_detect(.data$repo,"universe")~ .data$repo, # for Runiverse pkgs
+    TRUE ~ repo_details(.data$pkgname_clean) # Ensure repo_details handles missing packages gracefully
+  ), annotation = dplyr::case_when(
+    user_repo == "details not available" ~ user_repo, # Handle cases where details weren't found
+    user_repo == "not installed on this machine" ~ user_repo, # Handle not installed cases
+    stringr::str_detect(user_repo, "/(?!.+r-universe.+)") ~ paste0("[", .data$repo, "::", user_repo, "]"),
+    TRUE ~ user_repo
+  ))
   pck_descs <- dplyr::mutate(pck_descs, version = pkg_version(gsub("[\'\"]", "", .data$package_name)))
+
 
   # build annotations
   if (all(!grepl("p_load", pck_descs$call))) { # no pacman calls
