@@ -10,4 +10,4 @@ No ERRORs, WARNINGs, or NOTEs.
   
 ## No dependency issues
 
-* This minor patch includes test fixes and adds robustness to pak installations of CRAN packages
+* This minor patch includes test fixes and adds robustness to pak installations of CRAN packages, addresses CRAN check errors potentially linked to the latest release of purrr
