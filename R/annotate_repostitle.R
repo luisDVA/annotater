@@ -48,19 +48,19 @@ annotate_repostitle <- function(string_og) {
   pck_descs <- dplyr::left_join(out_tb, pck_descs, by = "rowid")
   pck_descs <- dplyr::mutate(pck_descs, repo = ifelse(stringr::str_detect(.data$repo, ","), "Bioconductor", .data$repo))
   
-  # Keep only one row per package - prioritize Repository field
+  # one row per package 
   pck_descs <- pck_descs |>
     dplyr::group_by(.data$rowid) |>
     dplyr::slice(1) |>
     dplyr::ungroup()
   
   pck_descs <- dplyr::mutate(pck_descs, user_repo = dplyr::case_when(
-    is.na(.data$repo) ~ "not installed on this machine", # Handle NA repo (package not installed)
+    is.na(.data$repo) ~ "not installed on this machine", 
     .data$repo == "CRAN" ~ "CRAN",
     .data$repo == "Bioconductor" ~ "Bioconductor",
     .data$repo == "RSPM" ~ "Posit RSPM",
-    stringr::str_detect(.data$repo, "universe") ~ .data$repo, # for Runiverse pkgs
-    TRUE ~ repo_details(.data$pkgname_clean) # For GitHub/other remote packages
+    stringr::str_detect(.data$repo, "universe") ~ .data$repo, 
+    TRUE ~ repo_details(.data$pkgname_clean) # remote packages
   ), annotation = dplyr::case_when(
     user_repo == "not installed on this machine" ~ user_repo,
     stringr::str_detect(user_repo, "/(?!.+r-universe.+)") ~ paste0("[", .data$repo, "::", user_repo, "]"),
@@ -120,7 +120,7 @@ annotate_repostitle <- function(string_og) {
     return(
       stringi::stri_replace_all_fixed(
         str = string_og,
-        pattern = pck_descs$call, # Changed 
+        pattern = pck_descs$call, 
         replacement = pck_descs$annotated,
         vectorize_all = FALSE
       )
